@@ -1,0 +1,18 @@
+@mixin d-flex($direction: row, $align: center, $justify: center)
+    display: flex
+    flex-direction: $direction
+    align-items: $align
+    justify-content: $justify
+
+@mixin d-grid($columns, $gap: 10px, $align: center, $justify: center)
+    display: grid
+    align-items: $align
+    justify-content: $justify
+    grid-gap: $gap
+    grid-template-columns: $columns
+
+@mixin b-radius($radius: 5px)
+    -webkik-border-radius: $radius
+    -moz-border-radius: $radius
+    -ms-border-radius: $radius
+    border-radius: $radius

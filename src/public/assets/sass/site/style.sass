@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+@import '../partials/variables'
+@import '../partials/mixins'
+
+*
+    margin: 0px
+    padding: 0px
+    box-sizing: border-box
+    font-family: 'Montserrat', sans-serif
+    font-size: 16px
+
+a
+    text-decoration: none
+
+@for $i from 1 through 6 
+    h#{$i}
+        font-size: 60px / $i
+
+        span
+            padding: 5px
+            font-size: 60px / $i
+            background-color: $primary-color
+
+.container
+    padding: 40px 300px
+
+.btn
+    @include b-radius(5px)
+    padding: 20px 40px
+    background-color: black
+    color: white
+    transition-duration: 0.3s
+    display: inline-block
+
+    &:hover
+        transform: scale(1.1)
+
+    i, svg
+        margin-left: 5px
+
+.header
+    height: 800px
+    background-image: url('/img/banner.webp')
+    background-size: cover
+    background-position: center
+    background-attachment: attachment
+
+    .logo
+        width: 80px
+        filter: brightness(0)
+
+    &-nav
+        @include d-flex(row, center, space-between)
+
+        ul
+           @include d-flex() 
+
+           li
+                display: inline-block
+                padding: 0px 40px
+
+                a
+                    color: black
+
+                    i
+                        margin-right: 5px
+
+    &-info
+        width: 700px
+        margin-top: 140px
+
+    &-title
+        font-size: 50px
+        margin-bottom: 20px
+
+    &-desc
+        font-size: 14px
+        margin-bottom: 20px

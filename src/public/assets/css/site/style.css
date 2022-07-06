@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 60px;
+}
+h1 span {
+  padding: 5px;
+  font-size: 60px;
+  background-color: #FEE601;
+}
+
+h2 {
+  font-size: 30px;
+}
+h2 span {
+  padding: 5px;
+  font-size: 30px;
+  background-color: #FEE601;
+}
+
+h3 {
+  font-size: 20px;
+}
+h3 span {
+  padding: 5px;
+  font-size: 20px;
+  background-color: #FEE601;
+}
+
+h4 {
+  font-size: 15px;
+}
+h4 span {
+  padding: 5px;
+  font-size: 15px;
+  background-color: #FEE601;
+}
+
+h5 {
+  font-size: 12px;
+}
+h5 span {
+  padding: 5px;
+  font-size: 12px;
+  background-color: #FEE601;
+}
+
+h6 {
+  font-size: 10px;
+}
+h6 span {
+  padding: 5px;
+  font-size: 10px;
+  background-color: #FEE601;
+}
+
+.container {
+  padding: 40px 300px;
+}
+
+.btn {
+  -webkik-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  padding: 20px 40px;
+  background-color: black;
+  color: white;
+  transition-duration: 0.3s;
+  display: inline-block;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+.btn i, .btn svg {
+  margin-left: 5px;
+}
+
+.header {
+  height: 800px;
+  background-image: url("/img/banner.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: attachment;
+}
+.header .logo {
+  width: 80px;
+  filter: brightness(0);
+}
+.header-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.header-nav ul li {
+  display: inline-block;
+  padding: 0px 40px;
+}
+.header-nav ul li a {
+  color: black;
+}
+.header-nav ul li a i {
+  margin-right: 5px;
+}
+.header-info {
+  width: 700px;
+  margin-top: 140px;
+}
+.header-title {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.header-desc {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */
