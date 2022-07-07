@@ -9,17 +9,23 @@
     font-family: 'Montserrat', sans-serif
     font-size: 16px
 
+    &::selection
+        background-color: $primary-color
+        color: white
+
 a
     text-decoration: none
 
 @for $i from 1 through 6 
     h#{$i}
         font-size: 60px / $i
+        color: $dark-color
 
         span
             padding: 5px
             font-size: 60px / $i
             background-color: $primary-color
+            color: white
 
 .container
     padding: 40px 300px
@@ -38,16 +44,24 @@ a
     i, svg
         margin-left: 5px
 
+.top-info
+    margin: 40px 0px
+
+    &-title
+
+
 .header
     height: 800px
-    background-image: url('/img/banner.webp')
+    background-image: url('/img/banner.jpg')
     background-size: cover
     background-position: center
-    background-attachment: attachment
+    background-attachment: fixed
+    background-blend-mode: darken
+    background-color: rgba(0, 0, 0, 0.5)
 
     .logo
         width: 80px
-        filter: brightness(0)
+        filter: brightness(0) invert(1)
 
     &-nav
         @include d-flex(row, center, space-between)
@@ -60,7 +74,7 @@ a
                 padding: 0px 40px
 
                 a
-                    color: black
+                    color: white
 
                     i
                         margin-right: 5px
@@ -72,7 +86,52 @@ a
     &-title
         font-size: 50px
         margin-bottom: 20px
+        color: white
 
     &-desc
         font-size: 14px
         margin-bottom: 20px
+        color: #d4d5d6
+
+.footer
+    padding: 30px
+    text-align: center
+    color: white
+    background-color: $dark-color
+    margin-top: 80px
+
+    a
+        color: white
+
+        &:hover
+            text-decoration: underline
+
+.authors
+    @include d-grid(repeat(4, 1fr))
+    margin-top: 80px
+
+    a
+        color: $dark-color
+
+    &-card
+        padding: 20px
+        text-align: center
+        border: 1px solid #dcdcde
+        transition-duration: 0.3s
+
+        img
+            width: 200px
+            height: 200px
+            border-radius: 50%
+            margin: auto
+            object-fit: cover
+            margin-bottom: 20px
+
+        h3
+            color: $primary-color
+
+        &:hover
+            background-color: $dark-color
+            border-color: $dark-color
+
+

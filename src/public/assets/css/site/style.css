@@ -6,6 +6,10 @@
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
 }
+*::selection {
+  background-color: #6042f5;
+  color: white;
+}
 
 a {
   text-decoration: none;
@@ -13,56 +17,68 @@ a {
 
 h1 {
   font-size: 60px;
+  color: #121212;
 }
 h1 span {
   padding: 5px;
   font-size: 60px;
-  background-color: #FEE601;
+  background-color: #6042f5;
+  color: white;
 }
 
 h2 {
   font-size: 30px;
+  color: #121212;
 }
 h2 span {
   padding: 5px;
   font-size: 30px;
-  background-color: #FEE601;
+  background-color: #6042f5;
+  color: white;
 }
 
 h3 {
   font-size: 20px;
+  color: #121212;
 }
 h3 span {
   padding: 5px;
   font-size: 20px;
-  background-color: #FEE601;
+  background-color: #6042f5;
+  color: white;
 }
 
 h4 {
   font-size: 15px;
+  color: #121212;
 }
 h4 span {
   padding: 5px;
   font-size: 15px;
-  background-color: #FEE601;
+  background-color: #6042f5;
+  color: white;
 }
 
 h5 {
   font-size: 12px;
+  color: #121212;
 }
 h5 span {
   padding: 5px;
   font-size: 12px;
-  background-color: #FEE601;
+  background-color: #6042f5;
+  color: white;
 }
 
 h6 {
   font-size: 10px;
+  color: #121212;
 }
 h6 span {
   padding: 5px;
   font-size: 10px;
-  background-color: #FEE601;
+  background-color: #6042f5;
+  color: white;
 }
 
 .container {
@@ -87,16 +103,21 @@ h6 span {
   margin-left: 5px;
 }
 
+.top-info {
+  margin: 40px 0px;
+}
 .header {
   height: 800px;
-  background-image: url("/img/banner.webp");
+  background-image: url("/img/banner.jpg");
   background-size: cover;
   background-position: center;
-  background-attachment: attachment;
+  background-attachment: fixed;
+  background-blend-mode: darken;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .header .logo {
   width: 80px;
-  filter: brightness(0);
+  filter: brightness(0) invert(1);
 }
 .header-nav {
   display: flex;
@@ -115,7 +136,7 @@ h6 span {
   padding: 0px 40px;
 }
 .header-nav ul li a {
-  color: black;
+  color: white;
 }
 .header-nav ul li a i {
   margin-right: 5px;
@@ -127,10 +148,59 @@ h6 span {
 .header-title {
   font-size: 50px;
   margin-bottom: 20px;
+  color: white;
 }
 .header-desc {
   font-size: 14px;
   margin-bottom: 20px;
+  color: #d4d5d6;
+}
+
+.footer {
+  padding: 30px;
+  text-align: center;
+  color: white;
+  background-color: #121212;
+  margin-top: 80px;
+}
+.footer a {
+  color: white;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.authors {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 80px;
+}
+.authors a {
+  color: #121212;
+}
+.authors-card {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #dcdcde;
+  transition-duration: 0.3s;
+}
+.authors-card img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: auto;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.authors-card h3 {
+  color: #6042f5;
+}
+.authors-card:hover {
+  background-color: #121212;
+  border-color: #121212;
 }
 
 /*# sourceMappingURL=style.css.map */
