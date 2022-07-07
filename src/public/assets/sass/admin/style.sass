@@ -1,0 +1,67 @@
+@import '../partials/init'
+
+.login-container
+    @include d-flex()
+    position: absolute
+    width: 100vw
+    height: 100vh
+    background-image: url('/img/banner.jpg')
+    background-size: cover
+    background-position: center
+
+    .login
+        width: 500px
+        padding: 80px 40px
+        background-color: white
+
+        .btn
+            width: 100%
+            margin-top: 30px
+            text-transform: uppercase
+
+.container-admin
+    @include d-grid(300px 1fr, 0px, flex-start, flex-start)
+    position: absolute
+    width: 100vw
+    height: 100vh
+
+    .sidebar
+        background-color: $dark-color
+        height: 100vh
+
+        &-header
+            @include d-flex()
+            height: 200px
+            background-image: url('/img/banner.jpg')
+            background-size: cover
+            background-position: center
+            background-blend-mode: darken
+            background-color: rgba(0, 0, 0, 0.1)
+
+            img
+                @include b-radius(50%)
+                width: 150px
+                height: 150px
+                object-fit: cover              
+        
+        &-body
+            @include d-flex(column, flex-start, flex-start)
+            margin-top: 20px
+
+            a
+                color: white
+                width: 100%
+
+            li
+                padding: 20px
+                transition-duration: 0.3s
+                width: 100%
+
+                &:hover
+                    border-left: 4px solid $primary-color
+
+                i
+                    width: 30px
+
+    &-body
+        padding: 40px

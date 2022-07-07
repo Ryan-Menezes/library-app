@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.form-group {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.form-group-icon {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 0px;
+  grid-template-columns: 50px 1fr;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.form-group-icon .form-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #dcdcde;
+  height: 100%;
+}
+.form-input {
+  outline: none;
+  padding: 15px;
+  border: 1px solid #dcdcde;
+}
+.form-input:focus {
+  outline: 1px solid #6042f5;
+}
+
+.btn {
+  -webkik-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  padding: 20px 40px;
+  background-color: black;
+  color: white;
+  transition-duration: 0.3s;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+.btn i, .btn svg {
+  margin-left: 5px;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+*::selection {
+  background-color: #6042f5;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 60px;
+  color: #121212;
+}
+h1 span {
+  padding: 5px;
+  font-size: 60px;
+  background-color: #6042f5;
+  color: white;
+}
+
+h2 {
+  font-size: 30px;
+  color: #121212;
+}
+h2 span {
+  padding: 5px;
+  font-size: 30px;
+  background-color: #6042f5;
+  color: white;
+}
+
+h3 {
+  font-size: 20px;
+  color: #121212;
+}
+h3 span {
+  padding: 5px;
+  font-size: 20px;
+  background-color: #6042f5;
+  color: white;
+}
+
+h4 {
+  font-size: 15px;
+  color: #121212;
+}
+h4 span {
+  padding: 5px;
+  font-size: 15px;
+  background-color: #6042f5;
+  color: white;
+}
+
+h5 {
+  font-size: 12px;
+  color: #121212;
+}
+h5 span {
+  padding: 5px;
+  font-size: 12px;
+  background-color: #6042f5;
+  color: white;
+}
+
+h6 {
+  font-size: 10px;
+  color: #121212;
+}
+h6 span {
+  padding: 5px;
+  font-size: 10px;
+  background-color: #6042f5;
+  color: white;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/img/banner.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.login-container .login {
+  width: 500px;
+  padding: 80px 40px;
+  background-color: white;
+}
+.login-container .login .btn {
+  width: 100%;
+  margin-top: 30px;
+  text-transform: uppercase;
+}
+
+.container-admin {
+  display: grid;
+  align-items: flex-start;
+  justify-content: flex-start;
+  grid-gap: 0px;
+  grid-template-columns: 300px 1fr;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+.container-admin .sidebar {
+  background-color: #121212;
+  height: 100vh;
+}
+.container-admin .sidebar-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background-image: url("/img/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: darken;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.container-admin .sidebar-header img {
+  -webkik-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.container-admin .sidebar-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+.container-admin .sidebar-body a {
+  color: white;
+  width: 100%;
+}
+.container-admin .sidebar-body li {
+  padding: 20px;
+  transition-duration: 0.3s;
+  width: 100%;
+}
+.container-admin .sidebar-body li:hover {
+  border-left: 4px solid #6042f5;
+}
+.container-admin .sidebar-body li i {
+  width: 30px;
+}
+.container-admin-body {
+  padding: 40px;
+}
+
+/*# sourceMappingURL=style.css.map */

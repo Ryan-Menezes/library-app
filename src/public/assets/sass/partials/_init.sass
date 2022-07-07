@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+@import '../partials/variables'
+@import '../partials/mixins'
+@import '../partials/form'
+@import '../partials/btn'
+    
+*
+    margin: 0px
+    padding: 0px
+    box-sizing: border-box
+    font-family: 'Montserrat', sans-serif
+    font-size: 16px
+    outline: none
+
+    &::selection
+        background-color: $primary-color
+        color: white
+
+a
+    text-decoration: none
+
+@for $i from 1 through 6 
+    h#{$i}
+        font-size: calc(60px / $i)
+        color: $dark-color
+
+        span
+            padding: 5px
+            font-size: calc(60px / $i)
+            background-color: $primary-color
+            color: white

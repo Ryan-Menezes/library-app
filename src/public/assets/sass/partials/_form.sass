@@ -1,0 +1,27 @@
+@import '_variables'
+
+.form
+    @include d-flex(column, flex-start, flex-start)
+
+    &-group
+        @include d-grid(1fr)
+        margin-bottom: 20px
+        width: 100%
+
+    &-group-icon
+        @include d-grid(50px 1fr, 0px)
+        margin-bottom: 20px
+        width: 100%
+
+        .form-icon
+           @include d-flex()
+           background-color: #dcdcde
+           height: 100%
+
+    &-input
+        outline: none
+        padding: 15px
+        border: 1px solid #dcdcde
+
+        &:focus
+            outline: 1px solid $primary-color

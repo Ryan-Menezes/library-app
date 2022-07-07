@@ -1,36 +1,27 @@
-{{>_header}}
+{{>site/_header}}
 
 <section class="container">
     <div class="top-info">
-        <h2 class="top-info-title">Livros de <span>diversos autores</span> passam por nosso catálogo!</h2>
+        <h2 class="top-info-title">Books by <span>different authors</span> go through our catalog!</h2>
     </div>
 
-    <div class="authors">
-        <a href="" title="">
-            <div class="authors-card">
-                <img src="https://as.ftcdn.net/v1/pics/home/discover_collections/22May/9a684b294728f6115501bba2ca05ff38b072a2e9.photos.jpg" alt="" />
-                <h3>Ana Maria</h3>
-            </div>
-        </a>
-        <a href="" title="">
-            <div class="authors-card">
-                <img src="https://as.ftcdn.net/v1/pics/home/discover_collections/22May/9a684b294728f6115501bba2ca05ff38b072a2e9.photos.jpg" alt="" />
-                <h3>Ana Maria</h3>
-            </div>
-        </a>
-        <a href="" title="">
-            <div class="authors-card">
-                <img src="https://as.ftcdn.net/v1/pics/home/discover_collections/22May/9a684b294728f6115501bba2ca05ff38b072a2e9.photos.jpg" alt="" />
-                <h3>Ana Maria</h3>
-            </div>
-        </a>
-        <a href="" title="">
-            <div class="authors-card">
-                <img src="https://as.ftcdn.net/v1/pics/home/discover_collections/22May/9a684b294728f6115501bba2ca05ff38b072a2e9.photos.jpg" alt="" />
-                <h3>Ana Maria</h3>
-            </div>
-        </a>
+    <div class="authors owl-carousel owl-theme">
+        {{>site/authors/_card}}
     </div>
-    
-    <a href="" title="See our huge book catalog" class="btn">More info <i class="fa-solid fa-plus"></i></a>
+</section>
+
+<section class="container">
+    <div class="top-info">
+        <h2 class="top-info-title">Alguns livros de nosso catálogo</h2>
+    </div>
+    <div class="books">
+        {{>site/books/_card}}
+        {{>site/books/_card}}
+        {{>site/books/_card}}
+        {{>site/books/_card}}
+        {{>site/books/_card}}
+        {{>site/books/_card}}
+        {{>site/books/_card}}
+        {{>site/books/_card}}
+    </div>
 </section>

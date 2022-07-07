@@ -54,7 +54,11 @@ app.use((req, res, next) => {
 })
 
 // - Routes
-require('./routes/index.route')(app);
+require('./routes/admin/auth.route')(app);
+require('./routes/admin/admin.route')(app);
+
+require('./routes/site/index.route')(app);
+require('./routes/site/books.route')(app);
 
 // - Errors
 app.use((req, res, next) => {
@@ -65,6 +69,7 @@ app.use((error, req, res, next) => {
     const { statusCode = 500, message } = error;
 
     res.status(statusCode).render('error', {
+        layout: false,
         statusCode,
         message,
         title: `${statusCode} ${message}`,
