@@ -1,0 +1,31 @@
+<section class="section-info">
+    <div class="section-info-header">
+        <h1>{{title}}</h1>
+    </div>
+    <div class="section-info-body">
+        <form action="" method="POST" enctype="multipart/form-data" class="form">
+            <div class="form-group">
+                <label class="form-label" for="avatar">Avatar:</label>
+                <input type="file" name="avatar" id="avatar" accept="image/*" class="form-input">
+            </div>
+            
+            <div class="grid-2">
+                <div class="form-group">
+                    <label class="form-label" for="name">Name:</label>
+                    <input type="text" name="name" id="name" placeholder="Name" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="slug">Slug:</label>
+                    <input type="text" name="slug" id="slug" placeholder="Slug" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="description">Description:</label>
+                <textarea name="description" id="description" class="form-input" placeholder="Description" rows="5"></textarea>
+            </div>
+
+            <button type="submit" class="btn">Salvar <i class="fa-solid fa-floppy-disk"></i></button>
+        </form>
+    </div>
+</section>

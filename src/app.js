@@ -56,6 +56,10 @@ app.use((req, res, next) => {
 // - Routes
 require('./routes/admin/auth.route')(app);
 require('./routes/admin/admin.route')(app);
+require('./routes/admin/users.route')(app);
+require('./routes/admin/books.route')(app);
+require('./routes/admin/categories.route')(app);
+require('./routes/admin/authors.route')(app);
 
 require('./routes/site/index.route')(app);
 require('./routes/site/books.route')(app);

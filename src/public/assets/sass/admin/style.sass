@@ -30,19 +30,24 @@
         height: 100vh
 
         &-header
-            @include d-flex()
-            height: 200px
+            @include d-flex(column)
+            padding: 20px
             background-image: url('/img/banner.jpg')
             background-size: cover
             background-position: center
             background-blend-mode: darken
-            background-color: rgba(0, 0, 0, 0.1)
+            background-color: rgba(0, 0, 0, 0.2)
 
             img
                 @include b-radius(50%)
                 width: 150px
                 height: 150px
-                object-fit: cover              
+                object-fit: cover  
+
+            p
+                font-weight: bold  
+                color: white
+                margin-top: 10px        
         
         &-body
             @include d-flex(column, flex-start, flex-start)
@@ -64,4 +69,17 @@
                     width: 30px
 
     &-body
+        overflow: auto
         padding: 40px
+        height: 100vh
+
+        .section-info
+            padding: 20px
+            border: 1px solid #dcdcde
+
+            h1
+                font-size: 40px
+
+            &-header
+              @include d-flex(row, center, space-between)
+              padding-bottom: 20px

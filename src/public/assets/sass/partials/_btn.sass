@@ -1,8 +1,10 @@
+@import 'variables'
+    
 .btn
     @include b-radius(5px)
     padding: 20px 40px
     background-color: black
-    color: white
+    color: white!important
     transition-duration: 0.3s
     display: inline-block
     cursor: pointer
@@ -12,3 +14,18 @@
 
     i, svg
         margin-left: 5px
+
+    &-primary
+        background-color: $primary-color
+
+    &-danger
+        background-color: $danger-color
+
+    &-success
+        background-color: $success-color
+
+    &-warning
+        background-color: $warning-color
+
+    &-dark
+        background-color: $dark-color

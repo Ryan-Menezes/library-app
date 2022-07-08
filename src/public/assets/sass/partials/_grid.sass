@@ -1,0 +1,7 @@
+@import '../partials/variables'
+@import '../partials/mixins'
+    
+@for $i from 1 through 6
+    .grid-#{$i}
+        @include d-grid(repeat($i, 1fr))
+        width: 100%
