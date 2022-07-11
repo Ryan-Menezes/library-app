@@ -1,1 +1,3 @@
-require('../utils/loadFiles.util')(__dirname, __filename);
+const loadFilesUtil = require('../../utils/loadFiles.util');
+
+module.exports = loadFilesUtil(__dirname, __filename);

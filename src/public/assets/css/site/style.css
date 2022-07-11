@@ -77,6 +77,40 @@
   background-color: #121212;
 }
 
+.alert {
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.alert i, .alert svg {
+  margin-right: 5px;
+}
+.alert-primary {
+  border: 1px solid #4c2af4;
+  background-color: #6042f5;
+  color: white;
+}
+.alert-danger {
+  border: 1px solid #e92a1d;
+  background-color: #eb4034;
+  color: white;
+}
+.alert-success {
+  border: 1px solid #259453;
+  background-color: #2aa85f;
+  color: white;
+}
+.alert-warning {
+  border: 1px solid #b3a21e;
+  background-color: #c9b622;
+  color: white;
+}
+.alert-dark {
+  border: 1px solid #050505;
+  background-color: #121212;
+  color: white;
+}
+
 .p-0 {
   padding: 0px !important;
 }

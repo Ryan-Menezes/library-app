@@ -1,13 +1,16 @@
 @import '../partials/init'
 
 .login-container
-    @include d-flex()
+    @include d-flex(column)
     position: absolute
     width: 100vw
     height: 100vh
     background-image: url('/img/banner.jpg')
     background-size: cover
     background-position: center
+    
+    .login-errors
+        width: 500px
 
     .login
         width: 500px

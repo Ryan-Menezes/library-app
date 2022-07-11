@@ -9,9 +9,9 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const cors = require('cors');
 const morgan = require('morgan');
+const httpErrors = require('http-errors');
 
 // Internal Dependencies 
-const errorUtil = require('./utils/error.util');
 const { session: sessionConfig } = require('./config');
 
 // Instances
@@ -50,8 +50,10 @@ app.use((req, res, next) => {
 
     req.config = config;
     res.locals.config = config;
+    res.locals.errors = req.flash('errors');
+    res.locals.successes = req.flash('successes');
     next();
-})
+});
 
 // - Routes
 require('./routes/admin/auth.route')(app);
@@ -66,17 +68,17 @@ require('./routes/site/books.route')(app);
 
 // - Errors
 app.use((req, res, next) => {
-    next(errorUtil.generate(404, 'Not Found'));
+    next(httpErrors.NotFound());
 });
 
 app.use((error, req, res, next) => {
-    const { statusCode = 500, message } = error;
+    const { status = 500, message } = error;
 
-    res.status(statusCode).render('error', {
+    res.status(status).render('error', {
         layout: false,
-        statusCode,
+        status,
         message,
-        title: `${statusCode} ${message}`,
+        title: `${status} ${message}`,
     });
 });
 
