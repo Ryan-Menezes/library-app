@@ -8,7 +8,7 @@ module.exports = {
         try {
             res.render(`${path}index`, {
                 layout: 'admin',
-                title: 'categories'
+                title: 'Categories'
             });
         } catch (e) {
             next(httpErrors.InternalServerError());

@@ -8,6 +8,7 @@ router.use(AuthMiddleware);
 
 router.get('/', UserController.index);
 router.get('/new', UserController.create);
+router.post('/new', UserController.store);
 router.get('/:id/edit', UserController.edit);
 
 module.exports = app => app.use('/admin/users', router);

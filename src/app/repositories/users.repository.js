@@ -31,4 +31,17 @@ module.exports = {
 
         return response.json();
     },
+
+    create: async (token, payload) => {
+        const response = await fetch(`${apiConfig.url}/${endpoint}`, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        return response.status === 201;
+    },
 };

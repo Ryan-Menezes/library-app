@@ -1,8 +1,9 @@
 const httpErrors = require('http-errors');
 
 const { users: userRepository } = require('../../repositories');
-// const { users: userSchema } = require('../../schemas');
-const errorsUtil = require('../../../utils/errors.util');
+const { users: userSchema } = require('../../schemas');
+const errorsUtil = require('../../../utils/errors.util');3
+const fileUtil = require('../../../utils/file.util');
 
 const route = '/admin/users';
 const path = 'admin/users/';
@@ -28,6 +29,27 @@ module.exports = {
                 layout: 'admin',
                 title: 'New User',
             });
+        } catch (e) {
+            next(httpErrors.InternalServerError());
+        }
+    },
+
+    store: async (req, res, next) => {
+        const files = await fileUtil.parse(req);
+        return res.send(files);
+
+        try {
+            const payload = await errorsUtil.treatRequest(req, res, userSchema, `${route}/new`);
+
+            const result = await userRepository.create(req.admin.token, payload);
+
+            if (result) {
+                req.flash('successes', [ 'User created successfully!' ]);
+            } else {
+                req.flash('errors', [ 'Could not create a new user, there was an error creating' ]);
+            }
+
+            res.redirect(`${route}/new`);
         } catch (e) {
             next(httpErrors.InternalServerError());
         }
