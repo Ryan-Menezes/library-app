@@ -17,17 +17,19 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each users}}
                 <tr>
-                    <td><img src="https://static.vecteezy.com/ti/vetor-gratis/p1/2083573-foto-de-perfil-de-desenho-animado-de-mulher-negra-vetor.jpg" alt="" title="" /></td>
-                    <td>Ryan Menezes</td>
-                    <td>RM</td>
-                    <td>13/02/2003</td>
-                    <td>13/02/2003</td>
+                    <td><img src="{{this.attributes.avatar}}" alt="{{this.attributes.first_name}} {{this.attributes.last_name}}" title="{{this.attributes.first_name}} {{this.attributes.last_name}}" /></td>
+                    <td>{{this.attributes.first_name}} {{this.attributes.last_name}}</td>
+                    <td>{{this.attributes.username}}</td>
+                    <td>{{this.attributes.created_at}}</td>
+                    <td>{{this.attributes.updated_at}}</td>
                     <td>
-                        <a href="javascript:void(0)" data-delete="/admin/users/1/delete" title="Delete User" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
-                        <a href="/admin/users/1/edit" title="Edit User" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
+                        <a href="javascript:void(0)" data-delete="/admin/users/{{this.attributes._id}}/delete" title="Delete User" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
+                        <a href="/admin/users/{{this.attributes._id}}/edit" title="Edit User" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

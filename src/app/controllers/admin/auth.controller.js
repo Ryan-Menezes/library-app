@@ -15,7 +15,7 @@ module.exports = {
                 title: 'Login'
             });
         } catch (e) {
-            next(httpErrors.BadRequest());
+            next(httpErrors.InternalServerError());
         }
     },
 
@@ -30,24 +30,27 @@ module.exports = {
                 return res.redirect(`${route}/login`);
             }
 
-            res.send(response);
+            req.session.admin = response;
+            return res.redirect(route);
         } catch (e) {
-            next(httpErrors.BadRequest());
+            next(httpErrors.InternalServerError());
         }
     },
 
     logout: async (req, res, next) => {
         try {
-            const response = await authRepository.logout(req.token);
+            const response = await authRepository.logout(req.session.admin.token);
+            req.admin = undefined;
+            req.session.admin = undefined;
 
             if (response.statusCode) {
                 req.flash('errors', [ 'Could not get out' ]);
                 return res.redirect(route);
             }
 
-            return res.redirect(route);
+            return res.redirect(`${route}/login`);
         } catch (e) {
-            next(httpErrors.BadRequest());
+            next(httpErrors.InternalServerError());
         }
     },
 };

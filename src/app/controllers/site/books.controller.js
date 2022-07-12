@@ -1,14 +1,13 @@
 const httpErrors = require('http-errors');
 
-const route = '/admin';
-const path = 'admin/';
+const route = '/books';
+const path = 'site/books/';
 
 module.exports = {
     index: async (req, res, next) => {
         try {
             res.render(`${path}index`, {
-                layout: 'admin',
-                title: 'Home'
+                title: 'Books',
             });
         } catch (e) {
             next(httpErrors.InternalServerError());
