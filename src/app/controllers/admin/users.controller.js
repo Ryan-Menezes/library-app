@@ -35,13 +35,12 @@ module.exports = {
     },
 
     store: async (req, res, next) => {
-        const files = await fileUtil.parse(req);
-        return res.send(files);
-
         try {
-            const payload = await errorsUtil.treatRequest(req, res, userSchema, `${route}/new`);
+            const { fields, files } = await fileUtil.parse(req);
+            req.body = fields;
 
-            const result = await userRepository.create(req.admin.token, payload);
+            const payload = await errorsUtil.treatRequest(req, res, userSchema, `${route}/new`);         
+            const result = await userRepository.create(req.admin.token, payload, files);
 
             if (result) {
                 req.flash('successes', [ 'User created successfully!' ]);

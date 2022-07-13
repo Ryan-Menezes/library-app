@@ -17,7 +17,7 @@ const { session: sessionConfig } = require('./config');
 // Instances
 const app = express();
 const hbs = handlebars.create({
-    defaultLayout: 'site'
+    defaultLayout: 'site',
 });
 
 // Settings

@@ -7,8 +7,9 @@ module.exports = {
         const response = await fetch(`${apiConfig.url}/login`, {
             method: 'POST',
             body: JSON.stringify({ username, password }),
+            mode: 'cors',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
             },
         });
 
@@ -18,8 +19,9 @@ module.exports = {
     logout: async (token) => {
         const response = await fetch(`${apiConfig.url}/logout`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': `Bearer ${token}`,
             },
         });

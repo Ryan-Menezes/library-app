@@ -1,8 +1,17 @@
 const formidable = require('formidable');
-const { promisify } = require('util');
 
 const form = new formidable.IncomingForm();
 
 module.exports = {
-    parse: async (req) => promisify(form.parse)(req),
+    parse: async (req) => {
+        return new Promise((resolve, reject) => {
+            form.parse(req, (error, fields, files) => {
+                if (error) {
+                    reject(error);
+                }
+
+                resolve({ fields, files });
+            });
+        });
+    },
 };
