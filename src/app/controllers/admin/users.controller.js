@@ -57,7 +57,7 @@ module.exports = {
     edit: async (req, res, next) => {
         try {
             const user = await userRepository.find(req.admin.token, req.params.id);
-
+            
             if (user.statusCode) {
                 return next(httpErrors.NotFound());
             }
@@ -67,6 +67,58 @@ module.exports = {
                 title: 'Edit User',
                 user: user.data || {},
             });
+        } catch (e) {
+            next(httpErrors.InternalServerError());
+        }
+    },
+
+    update: async (req, res, next) => {
+        try {
+            const { fields, files } = await fileUtil.parse(req);
+            req.body = fields;
+
+            const user = await userRepository.find(req.admin.token, req.params.id);
+
+            if (user.statusCode) {
+                return next(httpErrors.NotFound());
+            }
+
+            const payload = await errorsUtil.treatRequest(req, res, userSchema, `${route}/${user.data.attributes._id}/edit`);         
+            if (!payload.password) {
+                delete payload.password;
+            }
+            
+            const result = await userRepository.update(req.admin.token, user.data.attributes._id, payload, files);
+
+            if (result) {
+                req.flash('successes', [ 'User updated successfully!' ]);
+            } else {
+                req.flash('errors', [ 'Could not updated a user, there was an error updating' ]);
+            }
+
+            res.redirect(`${route}/${user.data.attributes._id}/edit`);
+        } catch (e) {
+            next(httpErrors.InternalServerError());
+        }
+    },
+
+    delete: async (req, res, next) => {
+        try {
+            const user = await userRepository.find(req.admin.token, req.params.id);
+
+            if (user.statusCode) {
+                return next(httpErrors.NotFound());
+            }
+
+            const result = await userRepository.delete(req.admin.token, user.data.attributes._id);
+
+            if (result) {
+                req.flash('successes', [ 'User deleted successfully!' ]);
+            } else {
+                req.flash('errors', [ 'Could not delete a user, there was an error deleting' ]);
+            }
+
+            res.redirect(`${route}`);
         } catch (e) {
             next(httpErrors.InternalServerError());
         }

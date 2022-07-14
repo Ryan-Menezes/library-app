@@ -86,3 +86,34 @@
             &-header
               @include d-flex(row, center, space-between)
               padding-bottom: 20px
+
+        .modal
+            @include d-flex()
+            display: none
+            position: fixed
+            top: 0px
+            left: 0px
+            width: 100vw
+            height: 100vh
+            background-color: rgba(0, 0, 0, 0.4)
+            z-index: 9999999
+
+            &-card
+                width: 450px
+                background-color: white
+                padding: 10px
+
+            &-head
+                padding: 15px
+                border-bottom: 1px solid #dcdcde
+
+                h2
+                    font-size: 18px
+
+            &-body
+                padding: 20px 15px
+
+            &-footer
+                @include d-flex(row, center, flex-end)
+                padding: 15px
+                border-top: 1px solid #dcdcde

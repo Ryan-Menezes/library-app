@@ -8,6 +8,9 @@ router.use(AuthMiddleware);
 
 router.get('/', CategoryController.index);
 router.get('/new', CategoryController.create);
-router.get('/:id/edit', CategoryController.edit);
+router.post('/new', CategoryController.store);
+router.get('/:slug/edit', CategoryController.edit);
+router.post('/:slug/edit', CategoryController.update);
+router.get('/:slug/delete', CategoryController.delete);
 
 module.exports = app => app.use('/admin/categories', router);

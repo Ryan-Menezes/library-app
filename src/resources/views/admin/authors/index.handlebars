@@ -16,17 +16,34 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each authors}}
                 <tr>
-                    <td><img src="https://static.vecteezy.com/ti/vetor-gratis/p1/2083573-foto-de-perfil-de-desenho-animado-de-mulher-negra-vetor.jpg" alt="" title="" /></td>
-                    <td><a href="" target="_blank" title="">Luiz Gustavo <i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-                    <td>13/02/2003</td>
-                    <td>13/02/2003</td>
+                    <td><img src="{{this.attributes.avatar}}" alt="{{this.attributes.name}}" title="{{this.attributes.name}}" /></td>
+                    <td>{{this.attributes.name}}</td>
+                    <td>{{this.attributes.created_at}}</td>
+                    <td>{{this.attributes.updated_at}}</td>
                     <td>
-                        <a href="javascript:void(0)" data-delete="/admin/authors/1/delete" title="Delete Author" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
-                        <a href="/admin/authors/1/edit" title="Edit Author" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
+                        <a href="javascript:void(0)" data-delete="/admin/authors/{{this.attributes.slug}}/delete" title="Delete Author" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
+                        <a href="/admin/authors/{{this.attributes.slug}}/edit" title="Edit Author" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
+    </div>
+</section>
+
+<section class="modal">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h2>Delete Author</h2>
+        </div>
+        <div class="modal-body">
+            <p>Do you really want to delete this author?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:void(0)" class="btn btn p-1" title="Cancel" id="btn-cancel">Cancel</a>
+            <a href="" title="Delete Author" class="btn btn-danger p-1 ml-1" id="btn-delete">Yes, I want!</a>
+        </div>
     </div>
 </section>

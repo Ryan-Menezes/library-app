@@ -780,5 +780,42 @@ h6 span {
   justify-content: space-between;
   padding-bottom: 20px;
 }
+.container-admin-body .modal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999999;
+}
+.container-admin-body .modal-card {
+  width: 450px;
+  background-color: white;
+  padding: 10px;
+}
+.container-admin-body .modal-head {
+  padding: 15px;
+  border-bottom: 1px solid #dcdcde;
+}
+.container-admin-body .modal-head h2 {
+  font-size: 18px;
+}
+.container-admin-body .modal-body {
+  padding: 20px 15px;
+}
+.container-admin-body .modal-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px;
+  border-top: 1px solid #dcdcde;
+}
 
 /*# sourceMappingURL=style.css.map */

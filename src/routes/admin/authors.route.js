@@ -8,6 +8,9 @@ router.use(AuthMiddleware);
 
 router.get('/', AuthorController.index);
 router.get('/new', AuthorController.create);
-router.get('/:id/edit', AuthorController.edit);
+router.post('/new', AuthorController.store);
+router.get('/:slug/edit', AuthorController.edit);
+router.post('/:slug/edit', AuthorController.update);
+router.get('/:slug/delete', AuthorController.delete);
 
 module.exports = app => app.use('/admin/authors', router);

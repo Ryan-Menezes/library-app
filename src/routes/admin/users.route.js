@@ -10,5 +10,7 @@ router.get('/', UserController.index);
 router.get('/new', UserController.create);
 router.post('/new', UserController.store);
 router.get('/:id/edit', UserController.edit);
+router.post('/:id/edit', UserController.update);
+router.get('/:id/delete', UserController.delete);
 
 module.exports = app => app.use('/admin/users', router);
