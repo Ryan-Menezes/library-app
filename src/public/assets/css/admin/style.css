@@ -817,5 +817,40 @@ h6 span {
   padding: 15px;
   border-top: 1px solid #dcdcde;
 }
+.container-admin-body .images {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 20px 0px;
+}
+.container-admin-body .images-card {
+  border: 1px solid #dcdcde;
+  position: relative;
+}
+.container-admin-body .images-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+.container-admin-body .images-remove {
+  -webkik-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  color: white;
+  background-color: #eb4034;
+  font-size: 20px;
+  right: -15px;
+  top: -15px;
+}
 
 /*# sourceMappingURL=style.css.map */

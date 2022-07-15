@@ -39,15 +39,7 @@ module.exports = {
             const { fields, files } = await fileUtil.parse(req);
             req.body = fields;
 
-            const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/new`);         
-            if (!payload.slug) {
-                delete payload.slug;
-            }
-
-            if (!payload.description) {
-                delete payload.description;
-            }
-            
+            const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/new`);
             const result = await authorRepository.create(req.admin.token, payload, files);
 
             if (result) {
@@ -91,15 +83,7 @@ module.exports = {
                 return next(httpErrors.NotFound());
             }
 
-            const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/${author.data.attributesslug}/edit`);         
-            if (!payload.slug) {
-                delete payload.slug;
-            }
-
-            if (!payload.description) {
-                delete payload.description;
-            }
-            
+            const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/${author.data.attributesslug}/edit`);
             const result = await authorRepository.update(req.admin.token, author.data.attributes.slug, payload, files);
 
             if (result) {

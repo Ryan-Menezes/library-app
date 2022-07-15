@@ -19,7 +19,13 @@
             <tbody>
                 {{#each users}}
                 <tr>
-                    <td><img src="{{this.attributes.avatar}}" alt="{{this.attributes.first_name}} {{this.attributes.last_name}}" title="{{this.attributes.first_name}} {{this.attributes.last_name}}" /></td>
+                    <td>
+                        {{#if this.attributes.avatar}}
+                        <img src="{{this.attributes.avatar}}" alt="{{this.attributes.first_name}} {{this.attributes.last_name}}" title="{{this.attributes.first_name}} {{this.attributes.last_name}}" />
+                        {{else}}
+                        <img src="/img/default.png" alt="{{this.attributes.first_name}} {{this.attributes.last_name}}" title="{{this.attributes.first_name}} {{this.attributes.last_name}}" />
+                        {{/if}}
+                    </td>
                     <td>{{this.attributes.first_name}} {{this.attributes.last_name}}</td>
                     <td>{{this.attributes.username}}</td>
                     <td>{{this.attributes.created_at}}</td>

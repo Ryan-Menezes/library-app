@@ -18,7 +18,13 @@
             <tbody>
                 {{#each authors}}
                 <tr>
-                    <td><img src="{{this.attributes.avatar}}" alt="{{this.attributes.name}}" title="{{this.attributes.name}}" /></td>
+                    <td>
+                        {{#if this.attributes.avatar}}
+                        <img src="{{this.attributes.avatar}}" alt="{{this.attributes.name}}" title="{{this.attributes.name}}" />
+                        {{else}}
+                        <img src="/img/default.png" alt="{{this.attributes.name}}" title="{{this.attributes.name}}" />
+                        {{/if}}
+                    </td>
                     <td>{{this.attributes.name}}</td>
                     <td>{{this.attributes.created_at}}</td>
                     <td>{{this.attributes.updated_at}}</td>

@@ -18,19 +18,48 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each books}}
                 <tr>
-                    <td><img src="https://cdn.maioresemelhores.com/imagens/mm-livros-infantis-11-cke.jpg" alt="" title="" /></td>
-                    <td><a href="" target="_blank" title="">Title <i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-                    <td><i class="fa-solid fa-circle-check text-success"></i></td>
-                    <td>13/02/2003</td>
-                    <td>13/02/2003</td>
-                    <td>13/02/2003</td>
                     <td>
-                        <a href="javascript:void(0)" data-delete="/admin/books/1/delete" title="Delete Book" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
-                        <a href="/admin/books/1/edit" title="Edit Book" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
+                        {{#if this.attributes.poster}}
+                        <img src="{{this.attributes.poster}}" alt="{{this.attributes.title}}" title="{{this.attributes.title}}" />
+                        {{else}}
+                        <img src="/img/default-book.png" alt="{{this.attributes.title}}" title="{{this.attributes.title}}" />
+                        {{/if}}
+                    </td>
+                    <td><a href="" target="_blank" title="{{this.attributes.title}}">{{this.attributes.title}} <i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                    <td>
+                        {{#if this.attributes.visible}}
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        {{else}}
+                        <i class="fa-solid fa-circle-xmark text-danger"></i>
+                        {{/if}}
+                    </td>
+                    <td>{{this.attributes.release_date}}</td>
+                    <td>{{this.attributes.created_at}}</td>
+                    <td>{{this.attributes.updated_at}}</td>
+                    <td>
+                        <a href="javascript:void(0)" data-delete="/admin/books/{{this.attributes.slug}}/delete" title="Delete Book" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
+                        <a href="/admin/books/{{this.attributes.slug}}/edit" title="Edit Book" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
+    </div>
+</section>
+
+<section class="modal">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h2>Delete Book</h2>
+        </div>
+        <div class="modal-body">
+            <p>Do you really want to delete this book?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:void(0)" class="btn btn p-1" title="Cancel" id="btn-cancel">Cancel</a>
+            <a href="" title="Delete Book" class="btn btn-danger p-1 ml-1" id="btn-delete">Yes, I want!</a>
+        </div>
     </div>
 </section>

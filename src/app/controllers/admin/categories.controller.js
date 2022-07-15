@@ -35,15 +35,7 @@ module.exports = {
 
     store: async (req, res, next) => {
         try {
-            const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/new`);         
-            if (!payload.slug) {
-                delete payload.slug;
-            }
-
-            if (!payload.description) {
-                delete payload.description;
-            }
-            
+            const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/new`);
             const result = await categoryRepository.create(req.admin.token, payload);
 
             if (result) {
@@ -84,15 +76,7 @@ module.exports = {
                 return next(httpErrors.NotFound());
             }
 
-            const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/${category.data.attributesslug}/edit`);         
-            if (!payload.slug) {
-                delete payload.slug;
-            }
-
-            if (!payload.description) {
-                delete payload.description;
-            }
-            
+            const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/${category.data.attributesslug}/edit`);
             const result = await categoryRepository.update(req.admin.token, category.data.attributes.slug, payload);
 
             if (result) {

@@ -3,7 +3,7 @@
         <h1>{{title}}</h1>
     </div>
     <div class="section-info-body">
-        <form action="" method="POST" enctype="multipart/form-data" class="form">
+        <form action="/admin/books/{{author.attributes.slug}}/edit" method="POST" enctype="multipart/form-data" class="form">
             <div class="grid-2">
                 <div class="form-group">
                     <label class="form-label" for="poster">Poster:</label>
@@ -14,112 +14,86 @@
                     <input type="file" name="gallery" id="gallery" accept="image/*" multiple="multiple" class="form-input">
                 </div>
             </div>
+
+            <div class="images">
+                {{#each images}}
+                <div class="images-card">
+                    <a href="/admin/books/{{../book.attributes.slug}}/images/{{this.attributes.filename}}/delete" title="Remove Image" class="images-remove">&times;</a>
+                    <img src="{{this.attributes.url}}" alt="{{this.attributes.filename}}" title="{{this.attributes.filename}}" />
+                </div>
+                {{/each}}
+            </div>
             
             <div class="grid-2">
                 <div class="form-group">
                     <label class="form-label" for="title">Title:</label>
-                    <input type="text" name="title" id="title" placeholder="Title" class="form-input">
+                    <input type="text" name="title" id="title" placeholder="Title" class="form-input" value="{{book.attributes.title}}">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="slug">Slug:</label>
-                    <input type="text" name="slug" id="slug" placeholder="Slug" class="form-input">
+                    <input type="text" name="slug" id="slug" placeholder="Slug" class="form-input" value="{{book.attributes.slug}}">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="visible">Visible:</label>
                 <select name="slug" id="visible" class="form-input">
+                    {{#if book.attributes.visible}}
+                    <option value="1" selected>Yes</option>
+                    <option value="0">No</option>
+                    {{else}}
                     <option value="1">Yes</option>
-                    <option value="10">No</option>
+                    <option value="0" selected>No</option>
+                    {{/if}}
                 </select>
             </div>
 
             <div class="grid-2">
                 <div class="form-group">
                     <label class="form-label" for="volume">Volume:</label>
-                    <input type="number" name="volume" id="volume" min="1" placeholder="Volume" class="form-input">
+                    <input type="number" name="volume" id="volume" min="1" placeholder="Volume" class="form-input" value="{{book.attributes.volume}}">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="edition">Edition:</label>
-                    <input type="number" name="edition" id="edition" min="1" placeholder="Edition" class="form-input">
+                    <input type="number" name="edition" id="edition" min="1" placeholder="Edition" class="form-input" value="{{book.attributes.edition}}">
                 </div>
             </div>
             
             <div class="form-group">
                 <label class="form-label" for="release_date">Release Date:</label>
-                <input type="date" name="release_date" id="release_date" class="form-input">
+                <input type="date" name="release_date" id="release_date" class="form-input" value="{{book.attributes.release_date}}">
             </div>
             <div class="form-group">
                 <label class="form-label" for="description">Description:</label>
-                <textarea name="description" id="description" class="form-input" placeholder="Description" rows="5"></textarea>
+                <textarea name="description" id="description" class="form-input" placeholder="Description" rows="5">{{book.attributes.description}}</textarea>
             </div>
             <div class="form-group">
                 <label class="form-label" for="details">Details:</label>
-                <textarea name="details" id="details" class="text-plugin"></textarea>
+                <textarea name="details" id="details" class="text-plugin">{{book.attributes.details}}</textarea>
             </div>
 
             <div class="grid-2 my-2">
                 <div class="p-2 border">
                     <h3>Categories:</h3>
                     <div class="grid-4 mt-3">
+                        {{#each categories}}
                         <div>
-                            <input type="checkbox" name="horror" id="horror">
-                            <label class="form-label" for="horror">Horror</label>
+                            <input type="checkbox" name="categories[]" id="category_{{this.attributes._id}}">
+                            <label class="form-label" for="category_{{this.attributes._id}}">{{this.attributes.name}}</label>
                         </div>
-                        <div>
-                            <input type="checkbox" name="horror" id="horror">
-                            <label class="form-label" for="horror">Horror</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="horror" id="horror">
-                            <label class="form-label" for="horror">Horror</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="horror" id="horror">
-                            <label class="form-label" for="horror">Horror</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="horror" id="horror">
-                            <label class="form-label" for="horror">Horror</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="horror" id="horror">
-                            <label class="form-label" for="horror">Horror</label>
-                        </div>
+                        {{/each}}
                     </div>
                 </div>
 
                 <div class="p-2 border">
                     <h3>Authors:</h3>
                     <div class="grid-4 mt-3">
+                        {{#each authors}}
                         <div>
-                            <input type="checkbox" name="chris" id="chris">
-                            <label class="form-label" for="chris">Chris Stevan</label>
+                            <input type="checkbox" name="authors[]" id="author_{{this.attributes._id}}">
+                            <label class="form-label" for="author_{{this.attributes._id}}">{{this.attributes.name}}</label>
                         </div>
-                        <div>
-                            <input type="checkbox" name="chris" id="chris">
-                            <label class="form-label" for="chris">Chris Stevan</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="chris" id="chris">
-                            <label class="form-label" for="chris">Chris Stevan</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="chris" id="chris">
-                            <label class="form-label" for="chris">Chris Stevan</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="chris" id="chris">
-                            <label class="form-label" for="chris">Chris Stevan</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="chris" id="chris">
-                            <label class="form-label" for="chris">Chris Stevan</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="chris" id="chris">
-                            <label class="form-label" for="chris">Chris Stevan</label>
-                        </div>
+                        {{/each}}
                     </div>
                 </div>
             </div>
