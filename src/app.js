@@ -18,13 +18,16 @@ const { session: sessionConfig } = require('./config');
 const app = express();
 const hbs = handlebars.create({
     defaultLayout: 'site',
+    helpers: {
+        parseDate: (date, lang = 'pt-BR') => new Date(date).toLocaleString(lang),
+    },
 });
 
 // Settings
 
 // - Body Parser
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // - Logs
 app.use(morgan('dev'));

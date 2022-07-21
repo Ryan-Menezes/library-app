@@ -8,6 +8,7 @@ const {
 const { books: bookSchema } = require('../../schemas');
 const errorsUtil = require('../../../utils/errors.util');3
 const fileUtil = require('../../../utils/file.util');
+const booksRepository = require('../../repositories/books.repository');
 
 const route = '/admin/books';
 const path = 'admin/books/';
@@ -15,7 +16,7 @@ const path = 'admin/books/';
 module.exports = {
     index: async (req, res, next) => {
         try {
-            const books = await bookRepository.all(req.admin.token, req.query);
+            const books = await bookRepository.all(req.query);
             
             res.render(`${path}index`, {
                 layout: 'admin',
@@ -29,8 +30,8 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const categories = await categoryRepository.all(req.admin.token);
-            const authors = await authorRepository.all(req.admin.token);
+            const categories = await categoryRepository.all();
+            const authors = await authorRepository.all();
 
             res.render(`${path}create`, {
                 layout: 'admin',
@@ -65,20 +66,25 @@ module.exports = {
 
     edit: async (req, res, next) => {
         try {
-            const book = await bookRepository.find(req.admin.token, req.params.slug);
+            const book = await bookRepository.find(req.params.slug);
 
             if (book.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const images = await bookRepository.getImages(req.admin.token, book.data.attributes.slug);
-            const categories = await categoryRepository.all(req.admin.token);
-            const authors = await authorRepository.all(req.admin.token);
+            const images = await bookRepository.getImages(book.data.attributes.slug);
+            const categories = await categoryRepository.all();
+            const authors = await authorRepository.all();
+
+            const bookData = book.data || {};
+            if (bookData.attributes.release_date) {
+                bookData.attributes.release_date = bookData.attributes.release_date.toString().replace(/T.*Z/ig, '');
+            }
 
             res.render(`${path}edit`, {
                 layout: 'admin',
                 title: 'Edit Book',
-                book: book.data || {},
+                book: bookData,
                 images: images.data || [],
                 categories: categories.data || [],
                 authors: authors.data || [],
@@ -93,14 +99,20 @@ module.exports = {
             const { fields, files } = await fileUtil.parse(req);
             req.body = fields;
 
-            const book = await bookRepository.find(req.admin.token, req.params.slug);
+            const book = await bookRepository.find(req.params.slug);
 
             if (book.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/${book.data.attributesslug}/edit`);
+            const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/${book.data.attributes.slug}/edit`);
             const result = await bookRepository.update(req.admin.token, book.data.attributes.slug, payload, files);
+            
+            files.gallery.forEach(async file => {
+                await booksRepository.addImage(req.admin.token, book.data.attributes.slug, [{
+                    image: file,
+                }]);
+            });
 
             if (result) {
                 req.flash('successes', [ 'Book updated successfully!' ]);
@@ -116,7 +128,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const book = await bookRepository.find(req.admin.token, req.params.slug);
+            const book = await bookRepository.find(req.params.slug);
 
             if (book.statusCode) {
                 return next(httpErrors.NotFound());
@@ -139,7 +151,7 @@ module.exports = {
     deleteImage: async (req, res, next) => {
         try {
             const { slug, filename } = req.params;
-            const book = await bookRepository.find(req.admin.token, slug);
+            const book = await bookRepository.find(slug);
 
             if (book.statusCode) {
                 return next(httpErrors.NotFound());

@@ -1,6 +1,6 @@
 const formidable = require('formidable');
 
-const form = new formidable.IncomingForm();
+const form = new formidable.IncomingForm({ multiples: true });
 
 module.exports = {
     parse: async (req) => {

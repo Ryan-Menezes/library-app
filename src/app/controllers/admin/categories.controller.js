@@ -10,7 +10,7 @@ const path = 'admin/categories/';
 module.exports = {
     index: async (req, res, next) => {
         try {
-            const categories = await categoryRepository.all(req.admin.token, req.query);
+            const categories = await categoryRepository.all(req.query);
 
             res.render(`${path}index`, {
                 layout: 'admin',
@@ -52,7 +52,7 @@ module.exports = {
 
     edit: async (req, res, next) => {
         try {
-            const category = await categoryRepository.find(req.admin.token, req.params.slug);
+            const category = await categoryRepository.find(req.params.slug);
             
             if (category.statusCode) {
                 return next(httpErrors.NotFound());
@@ -70,7 +70,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
-            const category = await categoryRepository.find(req.admin.token, req.params.slug);
+            const category = await categoryRepository.find(req.params.slug);
 
             if (category.statusCode) {
                 return next(httpErrors.NotFound());
@@ -93,7 +93,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const category = await categoryRepository.find(req.admin.token, req.params.slug);
+            const category = await categoryRepository.find(req.params.slug);
 
             if (category.statusCode) {
                 return next(httpErrors.NotFound());

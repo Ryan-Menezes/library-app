@@ -7,7 +7,7 @@ const { api: apiConfig } = require('../../config');
 const endpoint = 'books';
 
 module.exports = {
-    all: async (token, filter = {}) => {
+    all: async (filter = {}) => {
         filter = urlUtil.parseQuery(filter);
 
         const response = await fetch(`${apiConfig.url}/${endpoint}?${filter}`, {
@@ -15,20 +15,18 @@ module.exports = {
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${token}`,
             },
         });
 
         return response.json();
     },
 
-    find: async (token, slug) => {
+    find: async (slug) => {
         const response = await fetch(`${apiConfig.url}/${endpoint}/${slug}`, {
             method: 'GET',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${token}`,
             },
         });
 
@@ -80,13 +78,12 @@ module.exports = {
     // -----------------------------
     // IMAGES
     // -----------------------------
-    getImages: async (token, slug) => {
+    getImages: async (slug) => {
         const response = await fetch(`${apiConfig.url}/${endpoint}/${slug}/images`, {
             method: 'GET',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${token}`,
             },
         });
 

@@ -3,7 +3,7 @@
         <h1>{{title}}</h1>
     </div>
     <div class="section-info-body">
-        <form action="/admin/books/{{author.attributes.slug}}/edit" method="POST" enctype="multipart/form-data" class="form">
+        <form action="/admin/books/{{book.attributes.slug}}/edit" method="POST" enctype="multipart/form-data" class="form">
             <div class="grid-2">
                 <div class="form-group">
                     <label class="form-label" for="poster">Poster:</label>
@@ -37,7 +37,7 @@
 
             <div class="form-group">
                 <label class="form-label" for="visible">Visible:</label>
-                <select name="slug" id="visible" class="form-input">
+                <select name="visible" id="visible" class="form-input">
                     {{#if book.attributes.visible}}
                     <option value="1" selected>Yes</option>
                     <option value="0">No</option>
@@ -78,7 +78,7 @@
                     <div class="grid-4 mt-3">
                         {{#each categories}}
                         <div>
-                            <input type="checkbox" name="categories[]" id="category_{{this.attributes._id}}">
+                            <input type="checkbox" name="categories[]" id="category_{{this.attributes._id}}" value="{{this.attributes._id}}">
                             <label class="form-label" for="category_{{this.attributes._id}}">{{this.attributes.name}}</label>
                         </div>
                         {{/each}}
@@ -90,7 +90,7 @@
                     <div class="grid-4 mt-3">
                         {{#each authors}}
                         <div>
-                            <input type="checkbox" name="authors[]" id="author_{{this.attributes._id}}">
+                            <input type="checkbox" name="authors[]" id="author_{{this.attributes._id}}" value="{{this.attributes._id}}">
                             <label class="form-label" for="author_{{this.attributes._id}}">{{this.attributes.name}}</label>
                         </div>
                         {{/each}}

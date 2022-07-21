@@ -28,8 +28,8 @@
                     </td>
                     <td>{{this.attributes.first_name}} {{this.attributes.last_name}}</td>
                     <td>{{this.attributes.username}}</td>
-                    <td>{{this.attributes.created_at}}</td>
-                    <td>{{this.attributes.updated_at}}</td>
+                    <td>{{parseDate this.attributes.created_at}}</td>
+                    <td>{{parseDate this.attributes.updated_at}}</td>
                     <td>
                         <a href="javascript:void(0)" data-delete="/admin/users/{{this.attributes._id}}/delete" title="Delete User" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
                         <a href="/admin/users/{{this.attributes._id}}/edit" title="Edit User" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>

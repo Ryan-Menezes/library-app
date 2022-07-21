@@ -11,7 +11,7 @@ const path = 'admin/authors/';
 module.exports = {
     index: async (req, res, next) => {
         try {
-            const authors = await authorRepository.all(req.admin.token, req.query);
+            const authors = await authorRepository.all(req.query);
 
             res.render(`${path}index`, {
                 layout: 'admin',
@@ -56,7 +56,7 @@ module.exports = {
 
     edit: async (req, res, next) => {
         try {
-            const author = await authorRepository.find(req.admin.token, req.params.slug);
+            const author = await authorRepository.find(req.params.slug);
             
             if (author.statusCode) {
                 return next(httpErrors.NotFound());
@@ -77,7 +77,7 @@ module.exports = {
             const { fields, files } = await fileUtil.parse(req);
             req.body = fields;
 
-            const author = await authorRepository.find(req.admin.token, req.params.slug);
+            const author = await authorRepository.find(req.params.slug);
 
             if (author.statusCode) {
                 return next(httpErrors.NotFound());
@@ -100,7 +100,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const author = await authorRepository.find(req.admin.token, req.params.slug);
+            const author = await authorRepository.find(req.params.slug);
 
             if (author.statusCode) {
                 return next(httpErrors.NotFound());

@@ -26,8 +26,8 @@
                         {{/if}}
                     </td>
                     <td>{{this.attributes.name}}</td>
-                    <td>{{this.attributes.created_at}}</td>
-                    <td>{{this.attributes.updated_at}}</td>
+                    <td>{{parseDate this.attributes.created_at}}</td>
+                    <td>{{parseDate this.attributes.updated_at}}</td>
                     <td>
                         <a href="javascript:void(0)" data-delete="/admin/authors/{{this.attributes.slug}}/delete" title="Delete Author" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
                         <a href="/admin/authors/{{this.attributes.slug}}/edit" title="Edit Author" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
