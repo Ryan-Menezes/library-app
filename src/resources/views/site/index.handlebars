@@ -10,18 +10,33 @@
     </div>
 </section>
 
+<section class="container bg-dark">
+    <div class="book-session">
+        <div>
+            <h2>BOOK CLUB</h2>
+            <p class="my-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a href="/books" title="See our huge book catalog" class="btn">More info <i class="fa-solid fa-plus"></i></a>
+        </div>
+        <img src="/img/book-club.png">
+    </div>
+</section>
+
 <section class="container">
+    <div class="top-info">
+        <h2 class="top-info-title">Books by <span>different authors</span> go through our catalog!</h2>
+    </div>
+
+    <div class="authors owl-carousel owl-theme">
+        {{>site/authors/_card}}
+    </div>
+</section>
+
+<section class="container py-0">
     <div class="top-info">
         <h2 class="top-info-title">Alguns livros de nosso catálogo</h2>
     </div>
-    <div class="books">
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-    </div>
 </section>
+
+<div class="books owl-carousel owl-theme">
+    {{>site/books/_card}}
+</div>

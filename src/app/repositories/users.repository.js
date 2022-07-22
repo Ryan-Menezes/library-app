@@ -40,6 +40,7 @@ module.exports = {
 
         const response = await fetch(`${apiConfig.url}/${endpoint}`, {
             method: 'POST',
+            mode: 'cors',
             body: form,
             headers: {
                 ...form.getHeaders(),
@@ -55,6 +56,7 @@ module.exports = {
 
         const response = await fetch(`${apiConfig.url}/${endpoint}/${id}`, {
             method: 'PUT',
+            mode: 'cors',
             body: form,
             headers: {
                 ...form.getHeaders(),
@@ -68,6 +70,7 @@ module.exports = {
     delete: async (token, id) => {
         const response = await fetch(`${apiConfig.url}/${endpoint}/${id}`, {
             method: 'DELETE',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': `Bearer ${token}`,

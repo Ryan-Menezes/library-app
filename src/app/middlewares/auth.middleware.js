@@ -14,6 +14,6 @@ module.exports = async (req, res, next) => {
         return next(httpErrors.Unauthorized());
     }
 
-    req.admin = { ...admin, user: user.data.attribute };
+    res.locals.admin = req.admin = { ...admin, user: user.data.attributes };
     next();
 };

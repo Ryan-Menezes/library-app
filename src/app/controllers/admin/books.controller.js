@@ -52,7 +52,15 @@ module.exports = {
             const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/new`);
             const result = await bookRepository.create(req.admin.token, payload, files);
 
-            if (result) {
+            if (result.status === 201) {
+                const book = result.response;
+                
+                if (Array.isArray(files.gallery)) {
+                    files.gallery.forEach(async image => {
+                        await booksRepository.addImage(req.admin.token, book.data.attributes.slug, { image });
+                    });
+                }
+
                 req.flash('successes', [ 'Book created successfully!' ]);
             } else {
                 req.flash('errors', [ 'Could not create a new book, there was an error creating' ]);
@@ -107,14 +115,14 @@ module.exports = {
 
             const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/${book.data.attributes.slug}/edit`);
             const result = await bookRepository.update(req.admin.token, book.data.attributes.slug, payload, files);
-            
-            files.gallery.forEach(async file => {
-                await booksRepository.addImage(req.admin.token, book.data.attributes.slug, [{
-                    image: file,
-                }]);
-            });
 
             if (result) {
+                if (Array.isArray(files.gallery)) {
+                    files.gallery.forEach(async image => {
+                        await booksRepository.addImage(req.admin.token, book.data.attributes.slug, { image });
+                    });
+                }
+
                 req.flash('successes', [ 'Book updated successfully!' ]);
             } else {
                 req.flash('errors', [ 'Could not updated a book, there was an error updating' ]);
@@ -122,7 +130,7 @@ module.exports = {
 
             res.redirect(`${route}/${book.data.attributes.slug}/edit`);
         } catch (e) {
-            next(httpErrors.InternalServerError());
+            next(httpErrors.InternalServerError(e));
         }
     },
 
