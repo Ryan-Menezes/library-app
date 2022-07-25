@@ -1,17 +1,41 @@
 $(document).ready(function() {
-    $('.authors').owlCarousel({
+    $('.categories.owl-carousel').owlCarousel({
         loop: true,
         margin: 10,
-        nav: true,
-        dots: true,
+        nav: false,
+        dots: false,
         autoplay: true,
         autoplayTimeout: 4000,
         autoplayHoverPause: true,
-        responsive:{
+        responsive: {
+            0: {
+                items: 1,
+            },
+            600:{
+                items: 2,
+            },
+            1000:{
+                items: 4,
+            },
+        },
+    });
+
+    $('.authors.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: false,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 4000,
+        autoplayHoverPause: true,
+        responsive: {
             0:{
                 items: 1,
             },
             600:{
+                items: 2,
+            },
+            800:{
                 items: 3,
             },
             1000:{
@@ -20,7 +44,7 @@ $(document).ready(function() {
         },
     });
 
-    $('.books').owlCarousel({
+    $('.books.owl-carousel').owlCarousel({
         loop: true,
         margin: 30,
         nav: false,
@@ -29,11 +53,11 @@ $(document).ready(function() {
         autoplayTimeout: 4000,
         autoplayHoverPause: true,
         center: true,
-        responsive:{
-            0:{
+        responsive: {
+            0: {
                 items: 1,
             },
-            800:{
+            600:{
                 items: 3,
             },
             1000:{

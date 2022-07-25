@@ -64,8 +64,8 @@
                     <div class="grid-4 mt-3">
                         {{#each categories}}
                         <div>
-                            <input type="checkbox" name="categories[]" id="category_{{this.attributes._id}}">
-                            <label class="form-label" for="category_{{this.attributes._id}}">{{this.attributes.name}}</label>
+                            <input type="checkbox" name="categories[]" id="category_{{this.attributes.slug}}" value="{{this.attributes.slug}}">
+                            <label class="form-label" for="category_{{this.attributes.slug}}">{{this.attributes.name}}</label>
                         </div>
                         {{/each}}
                     </div>
@@ -76,8 +76,8 @@
                     <div class="grid-4 mt-3">
                         {{#each authors}}
                         <div>
-                            <input type="checkbox" name="authors[]" id="author_{{this.attributes._id}}">
-                            <label class="form-label" for="author_{{this.attributes._id}}">{{this.attributes.name}}</label>
+                            <input type="checkbox" name="authors[]" id="author_{{this.attributes.slug}}" value="{{this.attributes.slug}}">
+                            <label class="form-label" for="author_{{this.attributes.slug}}">{{this.attributes.name}}</label>
                         </div>
                         {{/each}}
                     </div>

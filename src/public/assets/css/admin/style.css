@@ -770,6 +770,8 @@ h6 span {
 .container-admin-body .section-info {
   padding: 20px;
   border: 1px solid #dcdcde;
+  box-shadow: 0px 0px 10px #dcdcde;
+  background-color: white;
 }
 .container-admin-body .section-info h1 {
   font-size: 40px;

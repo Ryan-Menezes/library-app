@@ -3,6 +3,15 @@
 .container
     padding: 40px 300px
 
+    @include desktop
+        padding: 40px 150px
+
+    @include tablet
+        padding: 40px 50px
+
+    @include mobile
+        padding: 40px
+
 .http-error
     @include d-grid(1fr 60%, 0px)
     padding: 0px 10%
@@ -124,9 +133,34 @@
         &:hover
             text-decoration: underline
 
+.categories
+    @include d-grid(repeat(4, 1fr))
+    margin-top: 80px
+    padding-bottom: 40px
+
+    a
+        color: $dark-color
+
+    &-card
+        padding: 30px
+        text-align: left
+        border: 1px solid #dcdcde
+        transition-duration: 0.3s
+
+        h3
+            color: $primary-color
+
+        &:hover
+            background-color: $dark-color
+            border-color: $dark-color
+
+        &:hover > h3
+            color: white
+
 .authors
     @include d-grid(repeat(4, 1fr))
     margin-top: 80px
+    padding-bottom: 40px
 
     a
         color: $dark-color
@@ -151,6 +185,9 @@
         &:hover
             background-color: $dark-color
             border-color: $dark-color
+
+        &:hover > h3
+            color: white
 
 .books
     @include d-grid(repeat(4, 1fr), 40px)

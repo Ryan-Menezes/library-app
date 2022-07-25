@@ -55,9 +55,24 @@ module.exports = {
             if (result.status === 201) {
                 const book = result.response;
                 
+                // Add images
                 if (Array.isArray(files.gallery)) {
                     files.gallery.forEach(async image => {
                         await booksRepository.addImage(req.admin.token, book.data.attributes.slug, { image });
+                    });
+                }
+
+                // Add categories
+                if (Array.isArray(req.body.categories)) {
+                    req.body.categories.forEach(async category => {
+                        await booksRepository.addCategory(req.admin.token, book.data.attributes.slug, category);
+                    });
+                }
+
+                // Add authors
+                if (Array.isArray(req.body.authors)) {
+                    req.body.authors.forEach(async author => {
+                        await booksRepository.addAuthor(req.admin.token, book.data.attributes.slug, author);
                     });
                 }
 
@@ -85,8 +100,19 @@ module.exports = {
             const authors = await authorRepository.all();
 
             const bookData = book.data || {};
+
+            bookData.attributes.categories = await bookRepository
+                .getCategories(bookData.attributes.slug);
+            bookData.attributes.categories = bookData.attributes.categories.data || [];
+
+            bookData.attributes.authors = await bookRepository
+                .getAuthors(bookData.attributes.slug);
+            bookData.attributes.authors = bookData.attributes.authors.data || [];
+
             if (bookData.attributes.release_date) {
-                bookData.attributes.release_date = bookData.attributes.release_date.toString().replace(/T.*Z/ig, '');
+                bookData.attributes.release_date = bookData.attributes.release_date
+                    .toString()
+                    .replace(/T.*Z/ig, '');
             }
 
             res.render(`${path}edit`, {
@@ -115,11 +141,26 @@ module.exports = {
 
             const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/${book.data.attributes.slug}/edit`);
             const result = await bookRepository.update(req.admin.token, book.data.attributes.slug, payload, files);
-
+            
             if (result) {
+                // Add images
                 if (Array.isArray(files.gallery)) {
                     files.gallery.forEach(async image => {
                         await booksRepository.addImage(req.admin.token, book.data.attributes.slug, { image });
+                    });
+                }
+
+                // Add categories
+                if (Array.isArray(req.body.categories)) {
+                    req.body.categories.forEach(async category => {
+                        await booksRepository.addCategory(req.admin.token, book.data.attributes.slug, category);
+                    });
+                }
+
+                // Add authors
+                if (Array.isArray(req.body.authors)) {
+                    req.body.authors.forEach(async author => {
+                        await booksRepository.addAuthor(req.admin.token, book.data.attributes.slug, author);
                     });
                 }
 
@@ -130,7 +171,7 @@ module.exports = {
 
             res.redirect(`${route}/${book.data.attributes.slug}/edit`);
         } catch (e) {
-            next(httpErrors.InternalServerError(e));
+            next(httpErrors.InternalServerError());
         }
     },
 

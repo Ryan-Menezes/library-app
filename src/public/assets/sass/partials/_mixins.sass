@@ -1,3 +1,5 @@
+@import 'variables'
+    
 @mixin d-flex($direction: row, $align: center, $justify: center)
     display: flex
     flex-direction: $direction
@@ -16,3 +18,15 @@
     -moz-border-radius: $radius
     -ms-border-radius: $radius
     border-radius: $radius
+
+@mixin desktop
+    @media screen and (max-width: #{$size-desktop})
+        @content
+
+@mixin tablet
+    @media screen and (max-width: #{$size-tablet})
+        @content
+
+@mixin mobile
+    @media screen and (max-width: #{$size-mobile})
+        @content

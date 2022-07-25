@@ -77,10 +77,17 @@
                     <h3>Categories:</h3>
                     <div class="grid-4 mt-3">
                         {{#each categories}}
-                        <div>
-                            <input type="checkbox" name="categories[]" id="category_{{this.attributes._id}}" value="{{this.attributes._id}}">
-                            <label class="form-label" for="category_{{this.attributes._id}}">{{this.attributes.name}}</label>
-                        </div>
+                            {{#if (includes this.attributes.slug ../book.attributes.categories)}}
+                            <div>
+                                <input type="checkbox" name="categories[]" id="category_{{this.attributes.slug}}" value="{{this.attributes.slug}}" checked>
+                                <label class="form-label" for="category_{{this.attributes.slug}}">{{this.attributes.name}}</label>
+                            </div>
+                            {{else}}
+                            <div>
+                                <input type="checkbox" name="categories[]" id="category_{{this.attributes.slug}}" value="{{this.attributes.slug}}">
+                                <label class="form-label" for="category_{{this.attributes.slug}}">{{this.attributes.name}}</label>
+                            </div>
+                            {{/if}}
                         {{/each}}
                     </div>
                 </div>
@@ -89,10 +96,17 @@
                     <h3>Authors:</h3>
                     <div class="grid-4 mt-3">
                         {{#each authors}}
-                        <div>
-                            <input type="checkbox" name="authors[]" id="author_{{this.attributes._id}}" value="{{this.attributes._id}}">
-                            <label class="form-label" for="author_{{this.attributes._id}}">{{this.attributes.name}}</label>
-                        </div>
+                            {{#if (includes this.attributes.slug ../book.attributes.authors)}}
+                            <div>
+                                <input type="checkbox" name="authors[]" id="author_{{this.attributes.slug}}" value="{{this.attributes.slug}}" checked>
+                                <label class="form-label" for="author_{{this.attributes.slug}}">{{this.attributes.name}}</label>
+                            </div>
+                            {{else}}
+                            <div>
+                                <input type="checkbox" name="authors[]" id="author_{{this.attributes.slug}}" value="{{this.attributes.slug}}">
+                                <label class="form-label" for="author_{{this.attributes.slug}}">{{this.attributes.name}}</label>
+                            </div>
+                            {{/if}}
                         {{/each}}
                     </div>
                 </div>

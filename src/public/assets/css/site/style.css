@@ -677,6 +677,21 @@ h6 span {
 .container {
   padding: 40px 300px;
 }
+@media screen and (max-width: 1700px) {
+  .container {
+    padding: 40px 150px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .container {
+    padding: 40px 50px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .container {
+    padding: 40px;
+  }
+}
 
 .http-error {
   display: grid;
@@ -818,6 +833,35 @@ h6 span {
   text-decoration: underline;
 }
 
+.categories {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 80px;
+  padding-bottom: 40px;
+}
+.categories a {
+  color: #121212;
+}
+.categories-card {
+  padding: 30px;
+  text-align: left;
+  border: 1px solid #dcdcde;
+  transition-duration: 0.3s;
+}
+.categories-card h3 {
+  color: #6042f5;
+}
+.categories-card:hover {
+  background-color: #121212;
+  border-color: #121212;
+}
+.categories-card:hover > h3 {
+  color: white;
+}
+
 .authors {
   display: grid;
   align-items: center;
@@ -825,6 +869,7 @@ h6 span {
   grid-gap: 10px;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 80px;
+  padding-bottom: 40px;
 }
 .authors a {
   color: #121212;
@@ -852,6 +897,9 @@ h6 span {
 .authors-card:hover {
   background-color: #121212;
   border-color: #121212;
+}
+.authors-card:hover > h3 {
+  color: white;
 }
 
 .books {
