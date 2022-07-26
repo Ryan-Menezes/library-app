@@ -1,0 +1,46 @@
+{{>site/_header-default}}
+
+<section class="container">
+    <div class="book-show">
+        <div class="book-images">
+            {{#if book.attributes.poster}}
+            <img src="{{book.attributes.poster}}" alt="{{book.attributes.title}}" title="{{book.attributes.title}}" class="books-img" />
+            {{else}}
+            <img src="/img/default-book.png" alt="{{book.attributes.title}}" title="{{book.attributes.title}}" class="books-img" />
+            {{/if}}
+
+            <div class="book-gallery owl-carousel owl-theme">
+                {{#each book.attributes.images}}
+                <img src="{{this.attributes.url}}" alt="{{book.attributes.title}}" title="{{book.attributes.title}}" class="item" />
+                {{/each}}
+            </div>
+        </div>
+        <div class="book-content">
+            <h1>{{book.attributes.title}}</h1>
+
+            <ul class="book-info">
+                {{#each book.attributes.authors}}
+                <li>
+                    {{#if this.attributes.avatar}}
+                    <img src="{{this.attributes.avatar}}" title="{{this.attributes.name}}" alt="{{this.attributes.name}}" />
+                    {{else}}
+                    <img src="/img/default.png" title="{{this.attributes.name}}" alt="{{this.attributes.name}}" />
+                    {{/if}}
+
+                    <a href="/authors/{{this.attributes.slug}}" title="{{this.attributes.name}}">{{this.attributes.name}}(Autor)</a>
+                </li>
+                {{/each}}
+            </ul>
+
+            <p class="book-desc">{{{book.attributes.description}}}</p>
+
+            <ul class="book-info">
+                {{#each book.attributes.categories}}
+                <li><a href="/categories/{{this.attributes.slug}}" title="{{this.attributes.name}}"><i class="fa-solid fa-tag"></i> {{this.attributes.name}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+    <p class="book-details">{{{book.attributes.details}}}</p>
+</section>

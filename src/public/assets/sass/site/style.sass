@@ -204,6 +204,7 @@
         width: 100%
         min-height: 420px
         object-fit: cover
+        border: 1px solid #dcdcde
 
     &-info
         padding: 10px 0px
@@ -215,12 +216,23 @@
         font-family: 'Edu TAS Beginner', cursive
 
     &-authors
+        @include d-flex(row, center, flex-start)
         font-size: 14px
         margin-bottom: 10px
         color: #4f4f4f
 
+        img
+            min-width: 30px
+            min-height: 30px
+            max-width: 30px
+            max-height: 30px
+            object-fit: cover
+            border-radius: 50%
+            margin-right: 10px
+            border: 1px solid #dcdcde
+
 .list-container
-    @include d-grid(300px 1fr, 40px, flex-start, flex-start)
+    @include d-grid(320px 1fr, 40px, flex-start, flex-start)
     margin-top: 40px
 
     .books
@@ -232,6 +244,8 @@
     width: 100%
     position: sticky
     top: 40px
+    border-radius: 10px
+    overflow: hidden
 
     &-header
         width: 100%
@@ -248,7 +262,7 @@
             @include d-grid(1fr 50px, 0px)
 
             input, button
-                padding: 10px
+                padding: 15px
             
             input
                 border: 1px solid #dcdcde
@@ -259,15 +273,23 @@
                 color: white
                 cursor: pointer
 
-    &-categories
+    &-categories, &-authors
         margin-top: 20px
 
         ul
             margin-top: 20px
 
             li
-                display: block
+                @include d-flex(row, center, flex-start)
                 margin-top: 5px
+
+                img
+                    width: 30px
+                    height: 30px
+                    object-fit: cover
+                    border-radius: 50%
+                    margin-right: 10px
+                    border: 1px solid #dcdcde
 
                 a
                     color: $dark-color
@@ -292,3 +314,48 @@
 
     img
         width: 100%
+
+.book-show
+    @include d-grid(400px 1fr, 40px, flex-start, flex-start)
+
+    .books-img
+        width: 100%
+        height: auto
+
+    .book-gallery
+        margin-top: 20px
+
+        img
+            @include b-radius(10px)
+            object-fit: cover
+            height: 120px
+            border: 1px solid #dcdcde
+
+    .book-desc
+        margin: 40px 0px
+
+    .book-info
+        @include d-flex(row, center, flex-start)
+        padding: 20px 0px  
+        border-top: 1px solid #dcdcde
+
+        li
+            @include d-flex(row, center, flex-start)
+            margin-right: 10px
+
+            img
+                width: 30px
+                height: 30px
+                object-fit: cover
+                border-radius: 50%
+                margin-right: 10px
+                border: 1px solid #dcdcde
+
+            a
+                color: $dark-color
+
+                &:hover
+                    text-decoration: underline 
+        
+.book-details
+    margin: 40px 0px     

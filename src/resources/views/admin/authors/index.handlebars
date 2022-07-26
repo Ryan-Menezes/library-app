@@ -25,7 +25,7 @@
                         <img src="/img/default.png" alt="{{this.attributes.name}}" title="{{this.attributes.name}}" />
                         {{/if}}
                     </td>
-                    <td>{{this.attributes.name}}</td>
+                    <td><a href="/authors/{{this.attributes.slug}}" target="_blank" title="{{this.attributes.name}}">{{this.attributes.name}} <i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
                     <td>{{parseDate this.attributes.created_at}}</td>
                     <td>{{parseDate this.attributes.updated_at}}</td>
                     <td>
@@ -36,6 +36,8 @@
                 {{/each}}
             </tbody>
         </table>
+
+        {{>_pagination}}
     </div>
 </section>
 

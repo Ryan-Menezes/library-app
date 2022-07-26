@@ -1,6 +1,11 @@
-<a href="" title="">
+<a href="/authors/{{author.slug}}" title="{{author.name}}">
     <div class="authors-card item">
-        <img src="https://as.ftcdn.net/v1/pics/home/discover_collections/22May/9a684b294728f6115501bba2ca05ff38b072a2e9.photos.jpg" alt="" />
-        <h3>Ana Maria</h3>
+        {{#if author.avatar}}
+        <img src="{{author.avatar}}" alt="{{author.name}}" title="{{author.name}}" />
+        {{else}}
+        <img src="/img/default.png" alt="{{author.name}}" title="{{author.name}}" />
+        {{/if}}
+        
+        <h3>{{author.name}}</h3>
     </div>
 </a>

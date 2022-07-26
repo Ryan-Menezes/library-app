@@ -8,7 +8,6 @@ const {
 const { books: bookSchema } = require('../../schemas');
 const errorsUtil = require('../../../utils/errors.util');3
 const fileUtil = require('../../../utils/file.util');
-const booksRepository = require('../../repositories/books.repository');
 
 const route = '/admin/books';
 const path = 'admin/books/';
@@ -22,6 +21,8 @@ module.exports = {
                 layout: 'admin',
                 title: 'Books',
                 books: books.data || [],
+                lastPage: books.links.last ? books.links.last.replace(/.*\?/ig, '?') : null,
+                nextPage: books.links.next ? books.links.next.replace(/.*\?/ig, '?') : null,
             });
         } catch (e) {
             next(httpErrors.InternalServerError());
@@ -47,32 +48,32 @@ module.exports = {
     store: async (req, res, next) => {
         try {
             const { fields, files } = await fileUtil.parse(req);
-            req.body = fields;
+            const data = req.body = fields;
+            const { slug } = req.params;
+            const { token } = req.admin;
 
             const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/new`);
-            const result = await bookRepository.create(req.admin.token, payload, files);
+            const result = await bookRepository.create(token, payload, files);
 
-            if (result.status === 201) {
-                const book = result.response;
-                
+            if (result) {
                 // Add images
                 if (Array.isArray(files.gallery)) {
                     files.gallery.forEach(async image => {
-                        await booksRepository.addImage(req.admin.token, book.data.attributes.slug, { image });
+                        await bookRepository.addImage(token, slug, { image });
                     });
                 }
 
                 // Add categories
-                if (Array.isArray(req.body.categories)) {
-                    req.body.categories.forEach(async category => {
-                        await booksRepository.addCategory(req.admin.token, book.data.attributes.slug, category);
+                if (Array.isArray(data.categories)) {
+                    data.categories.forEach(async category => {
+                        await bookRepository.addCategory(token, slug, category);
                     });
                 }
 
                 // Add authors
-                if (Array.isArray(req.body.authors)) {
-                    req.body.authors.forEach(async author => {
-                        await booksRepository.addAuthor(req.admin.token, book.data.attributes.slug, author);
+                if (Array.isArray(data.authors)) {
+                    data.authors.forEach(async author => {
+                        await bookRepository.addAuthor(token, slug, author);
                     });
                 }
 
@@ -89,26 +90,33 @@ module.exports = {
 
     edit: async (req, res, next) => {
         try {
-            const book = await bookRepository.find(req.params.slug);
+            const { slug } = req.params;
+
+            const book = await bookRepository.find(slug);
 
             if (book.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const images = await bookRepository.getImages(book.data.attributes.slug);
             const categories = await categoryRepository.all();
             const authors = await authorRepository.all();
 
+            // Book data
             const bookData = book.data || {};
 
-            bookData.attributes.categories = await bookRepository
-                .getCategories(bookData.attributes.slug);
+            // Images book
+            bookData.attributes.images = await bookRepository.getImages(slug);
+            bookData.attributes.images = bookData.attributes.images.data || [];
+
+            // Categories book
+            bookData.attributes.categories = await bookRepository.getCategories(slug);
             bookData.attributes.categories = bookData.attributes.categories.data || [];
 
-            bookData.attributes.authors = await bookRepository
-                .getAuthors(bookData.attributes.slug);
+            // Authors book
+            bookData.attributes.authors = await bookRepository.getAuthors(slug);
             bookData.attributes.authors = bookData.attributes.authors.data || [];
 
+            // Parse realease_date
             if (bookData.attributes.release_date) {
                 bookData.attributes.release_date = bookData.attributes.release_date
                     .toString()
@@ -119,7 +127,6 @@ module.exports = {
                 layout: 'admin',
                 title: 'Edit Book',
                 book: bookData,
-                images: images.data || [],
                 categories: categories.data || [],
                 authors: authors.data || [],
             });
@@ -131,36 +138,42 @@ module.exports = {
     update: async (req, res, next) => {
         try {
             const { fields, files } = await fileUtil.parse(req);
-            req.body = fields;
+            const data = req.body = fields;
+            const { slug } = req.params;
+            const { token } = req.admin;
 
-            const book = await bookRepository.find(req.params.slug);
-
+            const book = await bookRepository.find(slug);
+            
             if (book.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/${book.data.attributes.slug}/edit`);
-            const result = await bookRepository.update(req.admin.token, book.data.attributes.slug, payload, files);
+            const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/${slug}/edit`);
+            const result = await bookRepository.update(token, slug, payload, files);
             
             if (result) {
+                // Remove all categories and authors
+                await bookRepository.deleteAllCategories(token, slug);
+                await bookRepository.deleteAllAuthors(token, slug);
+
                 // Add images
                 if (Array.isArray(files.gallery)) {
                     files.gallery.forEach(async image => {
-                        await booksRepository.addImage(req.admin.token, book.data.attributes.slug, { image });
+                        await bookRepository.addImage(token, slug, { image });
                     });
                 }
 
                 // Add categories
-                if (Array.isArray(req.body.categories)) {
-                    req.body.categories.forEach(async category => {
-                        await booksRepository.addCategory(req.admin.token, book.data.attributes.slug, category);
+                if (Array.isArray(data.categories)) {
+                    data.categories.forEach(async category => {
+                        await bookRepository.addCategory(token, slug, category);
                     });
                 }
 
                 // Add authors
-                if (Array.isArray(req.body.authors)) {
-                    req.body.authors.forEach(async author => {
-                        await booksRepository.addAuthor(req.admin.token, book.data.attributes.slug, author);
+                if (Array.isArray(data.authors)) {
+                    data.authors.forEach(async author => {
+                        await bookRepository.addAuthor(token, slug, author);
                     });
                 }
 
@@ -169,7 +182,7 @@ module.exports = {
                 req.flash('errors', [ 'Could not updated a book, there was an error updating' ]);
             }
 
-            res.redirect(`${route}/${book.data.attributes.slug}/edit`);
+            res.redirect(`${route}/${slug}/edit`);
         } catch (e) {
             next(httpErrors.InternalServerError());
         }
@@ -177,13 +190,16 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const book = await bookRepository.find(req.params.slug);
+            const { slug } = req.params;
+            const { token } = req.admin;
 
+            const book = await bookRepository.find(slug);
+            
             if (book.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const result = await bookRepository.delete(req.admin.token, book.data.attributes.slug);
+            const result = await bookRepository.delete(token, slug);
 
             if (result) {
                 req.flash('successes', [ 'Book deleted successfully!' ]);
@@ -200,13 +216,15 @@ module.exports = {
     deleteImage: async (req, res, next) => {
         try {
             const { slug, filename } = req.params;
+            const { token } = req.admin;
+
             const book = await bookRepository.find(slug);
 
             if (book.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const result = await bookRepository.deleteImage(req.admin.token, slug, filename);
+            const result = await bookRepository.deleteImage(token, slug, filename);
 
             if (result) {
                 req.flash('successes', [ 'Image removed from gallery successfully!' ]);

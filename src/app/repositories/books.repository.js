@@ -46,10 +46,7 @@ module.exports = {
             },
         });
 
-        const status = response.status;
-        const json = await response.json();
-
-        return { status, response: json };
+        return response.status === 201;
     },
 
     update: async (token, slug, payload, files) => {
@@ -166,6 +163,16 @@ module.exports = {
         return response.status === 200;
     },
 
+    deleteAllCategories: async function(token, slug) {
+        const categories = await this.getCategories(slug);
+        
+        if (categories.data) {
+            categories.data.forEach(async category => {
+                await this.deleteCategory(token, slug, category.attributes.slug);
+            }); 
+        }
+    },
+
     // -----------------------------
     // AUTHORS
     // -----------------------------
@@ -205,5 +212,15 @@ module.exports = {
         });
 
         return response.status === 200;
+    },
+
+    deleteAllAuthors: async function(token, slug) {
+        const authors = await this.getAuthors(slug);
+        
+        if (authors.data) {
+            authors.data.forEach(async author => {
+                await this.deleteAuthor(token, slug, author.attributes.slug);
+            }); 
+        }
     },
 };

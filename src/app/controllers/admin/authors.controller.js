@@ -17,6 +17,8 @@ module.exports = {
                 layout: 'admin',
                 title: 'Authors',
                 authors: authors.data || [],
+                lastPage: authors.links.last ? authors.links.last.replace(/.*\?/ig, '?') : null,
+                nextPage: authors.links.next ? authors.links.next.replace(/.*\?/ig, '?') : null,
             });
         } catch (e) {
             next(httpErrors.InternalServerError());
@@ -38,9 +40,10 @@ module.exports = {
         try {
             const { fields, files } = await fileUtil.parse(req);
             req.body = fields;
+            const { token } = req.admin;
 
             const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/new`);
-            const result = await authorRepository.create(req.admin.token, payload, files);
+            const result = await authorRepository.create(token, payload, files);
 
             if (result) {
                 req.flash('successes', [ 'Author created successfully!' ]);
@@ -56,7 +59,9 @@ module.exports = {
 
     edit: async (req, res, next) => {
         try {
-            const author = await authorRepository.find(req.params.slug);
+            const { slug } = req.params;
+
+            const author = await authorRepository.find(slug);
             
             if (author.statusCode) {
                 return next(httpErrors.NotFound());
@@ -76,15 +81,17 @@ module.exports = {
         try {
             const { fields, files } = await fileUtil.parse(req);
             req.body = fields;
+            const { slug } = req.params;
+            const { token } = req.admin;
 
-            const author = await authorRepository.find(req.params.slug);
+            const author = await authorRepository.find(slug);
 
             if (author.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/${author.data.attributesslug}/edit`);
-            const result = await authorRepository.update(req.admin.token, author.data.attributes.slug, payload, files);
+            const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/${slug}/edit`);
+            const result = await authorRepository.update(token, slug, payload, files);
 
             if (result) {
                 req.flash('successes', [ 'Author updated successfully!' ]);
@@ -92,7 +99,7 @@ module.exports = {
                 req.flash('errors', [ 'Could not updated a author, there was an error updating' ]);
             }
 
-            res.redirect(`${route}/${author.data.attributes.slug}/edit`);
+            res.redirect(`${route}/${slug}/edit`);
         } catch (e) {
             next(httpErrors.InternalServerError());
         }
@@ -100,13 +107,16 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const author = await authorRepository.find(req.params.slug);
+            const { slug } = req.params;
+            const { token } = req.admin;
+
+            const author = await authorRepository.find(slug);
 
             if (author.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const result = await authorRepository.delete(req.admin.token, author.data.attributes.slug);
+            const result = await authorRepository.delete(token, slug);
 
             if (result) {
                 req.flash('successes', [ 'Author deleted successfully!' ]);

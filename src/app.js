@@ -54,6 +54,7 @@ app.use((req, res, next) => {
 
     req.config = config;
     res.locals.config = config;
+    res.locals.query = req.query;
     res.locals.errors = req.flash('errors');
     res.locals.successes = req.flash('successes');
     next();

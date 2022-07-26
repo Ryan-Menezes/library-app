@@ -6,7 +6,9 @@
     </div>
 
     <div class="categories owl-carousel owl-theme">
-        {{>site/categories/_card}}
+        {{#each categories}}
+        {{>site/categories/_card category=this.attributes}}
+        {{/each}}
     </div>
 </section>
 
@@ -27,7 +29,9 @@
     </div>
 
     <div class="authors owl-carousel owl-theme">
-        {{>site/authors/_card}}
+        {{#each authors}}
+        {{>site/authors/_card author=this.attributes}}
+        {{/each}}
     </div>
 </section>
 
@@ -38,5 +42,7 @@
 </section>
 
 <div class="books owl-carousel owl-theme">
-    {{>site/books/_card}}
+    {{#each books}}
+    {{>site/books/_card book=this.attributes}}
+    {{/each}}
 </div>

@@ -1,0 +1,38 @@
+<div class="search">
+    <div class="search-header">Search</div>
+
+    <div class="search-body">
+        <form method="GET">
+            <input type="search" name="search" placeholder="Search...">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        
+        <div class="search-categories">
+            <p><strong>Categories</strong></p>
+
+            <ul>
+                {{#each categories}}
+                <li><a href="/categories/{{this.attributes.slug}}" title="{{this.attributes.name}}"><i class="fa-solid fa-tag"></i> {{this.attributes.name}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="search-authors">
+            <p><strong>Authors</strong></p>
+
+            <ul>
+                {{#each authors}}
+                <li>
+                    {{#if this.attributes.avatar}}
+                    <img src="{{this.attributes.avatar}}" title="{{this.attributes.name}}" alt="{{this.attributes.name}}" />
+                    {{else}}
+                    <img src="/img/default.png" title="{{this.attributes.name}}" alt="{{this.attributes.name}}" />
+                    {{/if}}
+
+                    <a href="/authors/{{this.attributes.slug}}" title="{{this.attributes.name}}">{{this.attributes.name}}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

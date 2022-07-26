@@ -38,3 +38,21 @@ a
 
 .border
     border: 1px solid #dcdcde
+
+.pagination
+    @include d-flex(row, center, flex-start)
+    margin-top: 20px
+    border-top: 1px solid #dcdcde
+    padding-top: 20px
+
+    a
+        padding: 15px
+        border: 1px solid #dcdcde
+        text-transform: uppercase
+        color: $dark-color
+        transition-duration: 0.3s
+
+        &:hover
+            background-color: $dark-color
+            border-color: $dark-color
+            color: white

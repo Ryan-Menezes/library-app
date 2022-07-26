@@ -27,7 +27,7 @@
                         <img src="/img/default-book.png" alt="{{this.attributes.title}}" title="{{this.attributes.title}}" />
                         {{/if}}
                     </td>
-                    <td><a href="" target="_blank" title="{{this.attributes.title}}">{{this.attributes.title}} <i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                    <td><a href="/books/{{this.attributes.slug}}" target="_blank" title="{{this.attributes.title}}">{{this.attributes.title}} <i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
                     <td>
                         {{#if this.attributes.visible}}
                         <i class="fa-solid fa-circle-check text-success"></i>
@@ -46,6 +46,8 @@
                 {{/each}}
             </tbody>
         </table>
+
+        {{>_pagination}}
     </div>
 </section>
 

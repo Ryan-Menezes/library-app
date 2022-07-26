@@ -17,7 +17,7 @@
             <tbody>
                 {{#each categories}}
                 <tr>
-                    <td>{{this.attributes.name}}</td>
+                    <td><a href="/categories/{{this.attributes.slug}}" target="_blank" title="{{this.attributes.name}}">{{this.attributes.name}} <i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
                     <td>{{parseDate this.attributes.created_at}}</td>
                     <td>{{parseDate this.attributes.updated_at}}</td>
                     <td>
@@ -28,6 +28,8 @@
                 {{/each}}
             </tbody>
         </table>
+
+        {{>_pagination}}
     </div>
 </section>
 

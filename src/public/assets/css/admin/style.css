@@ -531,6 +531,7 @@
 }
 .table th img, .table td img {
   width: 50px;
+  border: 1px solid #dcdcde;
 }
 
 .grid-1 {
@@ -672,6 +673,28 @@ h6 span {
 
 .border {
   border: 1px solid #dcdcde;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+  border-top: 1px solid #dcdcde;
+  padding-top: 20px;
+}
+.pagination a {
+  padding: 15px;
+  border: 1px solid #dcdcde;
+  text-transform: uppercase;
+  color: #121212;
+  transition-duration: 0.3s;
+}
+.pagination a:hover {
+  background-color: #121212;
+  border-color: #121212;
+  color: white;
 }
 
 .login-container {

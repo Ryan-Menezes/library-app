@@ -16,6 +16,8 @@ module.exports = {
                 layout: 'admin',
                 title: 'Categories',
                 categories: categories.data || [],
+                lastPage: categories.links.last ? categories.links.last.replace(/.*\?/ig, '?') : null,
+                nextPage: categories.links.next ? categories.links.next.replace(/.*\?/ig, '?') : null,
             });
         } catch (e) {
             next(httpErrors.InternalServerError());
@@ -35,8 +37,10 @@ module.exports = {
 
     store: async (req, res, next) => {
         try {
+            const { token } = req.admin;
+
             const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/new`);
-            const result = await categoryRepository.create(req.admin.token, payload);
+            const result = await categoryRepository.create(token, payload);
 
             if (result) {
                 req.flash('successes', [ 'Category created successfully!' ]);
@@ -52,7 +56,9 @@ module.exports = {
 
     edit: async (req, res, next) => {
         try {
-            const category = await categoryRepository.find(req.params.slug);
+            const { slug } = req.params;
+
+            const category = await categoryRepository.find(slug);
             
             if (category.statusCode) {
                 return next(httpErrors.NotFound());
@@ -70,14 +76,17 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
-            const category = await categoryRepository.find(req.params.slug);
+            const { slug } = req.params;
+            const { token } = req.admin;
+
+            const category = await categoryRepository.find(slug);
 
             if (category.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/${category.data.attributesslug}/edit`);
-            const result = await categoryRepository.update(req.admin.token, category.data.attributes.slug, payload);
+            const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/${slug}/edit`);
+            const result = await categoryRepository.update(token, slug, payload);
 
             if (result) {
                 req.flash('successes', [ 'Category updated successfully!' ]);
@@ -85,7 +94,7 @@ module.exports = {
                 req.flash('errors', [ 'Could not updated a category, there was an error updating' ]);
             }
 
-            res.redirect(`${route}/${category.data.attributes.slug}/edit`);
+            res.redirect(`${route}/${slug}/edit`);
         } catch (e) {
             next(httpErrors.InternalServerError());
         }
@@ -93,13 +102,16 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const category = await categoryRepository.find(req.params.slug);
+            const { slug } = req.params;
+            const { token } = req.admin;
+
+            const category = await categoryRepository.find(slug);
 
             if (category.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const result = await categoryRepository.delete(req.admin.token, category.data.attributes.slug);
+            const result = await categoryRepository.delete(token, slug);
 
             if (result) {
                 req.flash('successes', [ 'Category deleted successfully!' ]);

@@ -1,36 +1,15 @@
 {{>site/_header-default}}
 
 <section class="container list-container">
-    <div class="search">
-        <div class="search-header">Search</div>
+    {{>site/_sidebar}}
 
-        <div class="search-body">
-            <form method="POST">
-                <input type="search" placeholder="Search...">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-            
-            <div class="search-categories">
-                <p><strong>Categories</strong></p>
-
-                <ul>
-                    <li><a href="" title="">Infantil</a></li>
-                    <li><a href="" title="">Infantil</a></li>
-                    <li><a href="" title="">Infantil</a></li>
-                    <li><a href="" title="">Infantil</a></li>
-                    <li><a href="" title="">Infantil</a></li>
-                </ul>
-            </div>
+    <div>
+        <div class="books">
+            {{#each books}}
+            {{> site/books/_card book=this.attributes}}
+            {{/each}}
         </div>
-    </div>
-    <div class="books">
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
-        {{>site/books/_card}}
+        
+        {{>_pagination}}
     </div>
 </section>

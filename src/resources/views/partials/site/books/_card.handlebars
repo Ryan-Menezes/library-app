@@ -1,10 +1,18 @@
 <div class="books-card">
-    <img src="https://cdn.maioresemelhores.com/imagens/mm-livros-infantis-11-cke.jpg" alt="" class="books-img" />
+    {{#if book.poster}}
+    <img src="{{book.poster}}" alt="{{book.title}}" title="{{book.title}}" class="books-img" />
+    {{else}}
+    <img src="/img/default-book.png" alt="{{book.title}}" title="{{book.title}}" class="books-img" />
+    {{/if}}
+
     <div class="books-info">
-        <a href="" title=""><h3 class="books-title">Marcelo, marmelo, martelo</h3></a>
+        <a href="/books/{{book.slug}}" title="{{book.title}}"><h3 class="books-title">{{book.title}}</h3></a>
 
         <div>
-            <p class="books-authors">Ruth Rocha</p>
+            <div class="books-authors">
+                <img src="http://localhost:3000/uploads/4cdcc2bca52f166efa5fa86484ab0dee.jpg" title="" alt="" />
+                <p>Ruth Rocha</p>
+            </div>
         </div>
     </div>
 </div>

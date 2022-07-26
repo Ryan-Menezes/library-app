@@ -16,7 +16,7 @@
             </div>
 
             <div class="images">
-                {{#each images}}
+                {{#each book.attributes.images}}
                 <div class="images-card">
                     <a href="/admin/books/{{../book.attributes.slug}}/images/{{this.attributes.filename}}/delete" title="Remove Image" class="images-remove">&times;</a>
                     <img src="{{this.attributes.url}}" alt="{{this.attributes.filename}}" title="{{this.attributes.filename}}" />

@@ -17,6 +17,8 @@ module.exports = {
                 layout: 'admin',
                 title: 'Users',
                 users: users.data || [],
+                lastPage: users.links.last ? users.links.last.replace(/.*\?/ig, '?') : null,
+                nextPage: users.links.next ? users.links.next.replace(/.*\?/ig, '?') : null,
             });
         } catch (e) {
             next(httpErrors.InternalServerError());
@@ -38,9 +40,10 @@ module.exports = {
         try {
             const { fields, files } = await fileUtil.parse(req);
             req.body = fields;
+            const { token } = req.admin;
 
             const payload = await errorsUtil.treatRequest(req, res, userSchema, `${route}/new`);         
-            const result = await userRepository.create(req.admin.token, payload, files);
+            const result = await userRepository.create(token, payload, files);
 
             if (result) {
                 req.flash('successes', [ 'User created successfully!' ]);
@@ -56,7 +59,10 @@ module.exports = {
 
     edit: async (req, res, next) => {
         try {
-            const user = await userRepository.find(req.admin.token, req.params.id);
+            const { id } = req.params;
+            const { token } = req.admin;
+
+            const user = await userRepository.find(token, id);
             
             if (user.statusCode) {
                 return next(httpErrors.NotFound());
@@ -76,19 +82,22 @@ module.exports = {
         try {
             const { fields, files } = await fileUtil.parse(req);
             req.body = fields;
+            const { id } = req.params;
+            const { token } = req.admin;
 
-            const user = await userRepository.find(req.admin.token, req.params.id);
+            const user = await userRepository.find(token, id);
 
             if (user.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const payload = await errorsUtil.treatRequest(req, res, userSchema, `${route}/${user.data.attributes._id}/edit`);         
+            const payload = await errorsUtil.treatRequest(req, res, userSchema, `${route}/${id}/edit`);         
+            
             if (!payload.password) {
                 delete payload.password;
             }
             
-            const result = await userRepository.update(req.admin.token, user.data.attributes._id, payload, files);
+            const result = await userRepository.update(token, id, payload, files);
 
             if (result) {
                 req.flash('successes', [ 'User updated successfully!' ]);
@@ -96,7 +105,7 @@ module.exports = {
                 req.flash('errors', [ 'Could not updated a user, there was an error updating' ]);
             }
 
-            res.redirect(`${route}/${user.data.attributes._id}/edit`);
+            res.redirect(`${route}/${id}/edit`);
         } catch (e) {
             next(httpErrors.InternalServerError());
         }
@@ -104,13 +113,16 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const user = await userRepository.find(req.admin.token, req.params.id);
+            const { id } = req.params;
+            const { token } = req.admin;
+
+            const user = await userRepository.find(token, id);
 
             if (user.statusCode) {
                 return next(httpErrors.NotFound());
             }
 
-            const result = await userRepository.delete(req.admin.token, user.data.attributes._id);
+            const result = await userRepository.delete(token, id);
 
             if (result) {
                 req.flash('successes', [ 'User deleted successfully!' ]);
