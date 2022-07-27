@@ -40,9 +40,9 @@ module.exports = {
             const { token } = req.admin;
 
             const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/new`);
-            const result = await categoryRepository.create(token, payload);
+            const { status } = await categoryRepository.create(token, payload);
 
-            if (result) {
+            if (status === 201) {
                 req.flash('successes', [ 'Category created successfully!' ]);
             } else {
                 req.flash('errors', [ 'Could not create a new category, there was an error creating' ]);
@@ -86,9 +86,9 @@ module.exports = {
             }
 
             const payload = await errorsUtil.treatRequest(req, res, categorySchema, `${route}/${slug}/edit`);
-            const result = await categoryRepository.update(token, slug, payload);
+            const { status } = await categoryRepository.update(token, slug, payload);
 
-            if (result) {
+            if (status === 200) {
                 req.flash('successes', [ 'Category updated successfully!' ]);
             } else {
                 req.flash('errors', [ 'Could not updated a category, there was an error updating' ]);

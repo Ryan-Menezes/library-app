@@ -48,7 +48,10 @@ module.exports = {
             },
         });
 
-        return response.status === 201;
+        const status = response.status;
+        const response_json = await response.json();
+
+        return { status, response: response_json };
     },
 
     update: async (token, id, payload, files) => {
@@ -64,7 +67,10 @@ module.exports = {
             },
         });
 
-        return response.status === 200;
+        const status = response.status;
+        const response_json = await response.json();
+
+        return { status, response: response_json };
     },
 
     delete: async (token, id) => {

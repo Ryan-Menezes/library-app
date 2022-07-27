@@ -43,9 +43,9 @@ module.exports = {
             const { token } = req.admin;
 
             const payload = await errorsUtil.treatRequest(req, res, userSchema, `${route}/new`);         
-            const result = await userRepository.create(token, payload, files);
+            const { status } = await userRepository.create(token, payload, files);
 
-            if (result) {
+            if (status === 201) {
                 req.flash('successes', [ 'User created successfully!' ]);
             } else {
                 req.flash('errors', [ 'Could not create a new user, there was an error creating' ]);
@@ -97,9 +97,9 @@ module.exports = {
                 delete payload.password;
             }
             
-            const result = await userRepository.update(token, id, payload, files);
+            const { status } = await userRepository.update(token, id, payload, files);
 
-            if (result) {
+            if (status === 200) {
                 req.flash('successes', [ 'User updated successfully!' ]);
             } else {
                 req.flash('errors', [ 'Could not updated a user, there was an error updating' ]);

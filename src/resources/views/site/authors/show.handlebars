@@ -1,0 +1,23 @@
+{{>site/_header-find}}
+
+<div class="container author-find">
+    <img src="{{author.attributes.avatar}}" title="{{author.attributes.name}}" alt="{{author.attributes.name}}" />
+    <div>
+        <h1>{{author.attributes.name}}</h1>
+        <p>{{{author.attributes.description}}}</p>
+    </div>
+</div>
+
+<section class="container list-container">
+    {{>site/_sidebar}}
+
+    <div>
+        <div class="books">
+            {{#each books}}
+            {{> site/books/_card book=this.attributes}}
+            {{/each}}
+        </div>
+        
+        {{>_pagination}}
+    </div>
+</section>

@@ -1,4 +1,4 @@
-{{>site/_header-default}}
+{{>site/_header-find}}
 
 <section class="container">
     <div class="book-show">
@@ -10,6 +10,12 @@
             {{/if}}
 
             <div class="book-gallery owl-carousel owl-theme">
+                {{#if book.attributes.poster}}
+                <img src="{{book.attributes.poster}}" alt="{{book.attributes.title}}" title="{{book.attributes.title}}" class="item" />
+                {{else}}
+                <img src="/img/default-book.png" alt="{{book.attributes.title}}" title="{{book.attributes.title}}" class="item" />
+                {{/if}}
+
                 {{#each book.attributes.images}}
                 <img src="{{this.attributes.url}}" alt="{{book.attributes.title}}" title="{{book.attributes.title}}" class="item" />
                 {{/each}}
@@ -27,7 +33,7 @@
                     <img src="/img/default.png" title="{{this.attributes.name}}" alt="{{this.attributes.name}}" />
                     {{/if}}
 
-                    <a href="/authors/{{this.attributes.slug}}" title="{{this.attributes.name}}">{{this.attributes.name}}(Autor)</a>
+                    <a href="/authors/{{this.attributes.slug}}" title="{{this.attributes.name}}">{{this.attributes.name}}(Author)</a>
                 </li>
                 {{/each}}
             </ul>

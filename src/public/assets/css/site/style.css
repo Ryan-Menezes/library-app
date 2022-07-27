@@ -842,6 +842,40 @@ h6 span {
   color: #d4d5d6;
 }
 
+.header-find {
+  height: auto;
+  background-color: white;
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0px;
+  z-index: 999999999;
+}
+.header-find .logo {
+  width: 80px;
+}
+.header-find .header-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-find .header-nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.header-find .header-nav ul li {
+  display: inline-block;
+  padding: 0px 40px;
+}
+.header-find .header-nav ul li a {
+  color: #121212;
+}
+.header-find .header-nav ul li a i {
+  margin-right: 5px;
+}
+
 .footer {
   padding: 30px;
   text-align: center;
@@ -1093,10 +1127,15 @@ h6 span {
   justify-content: flex-start;
   grid-gap: 40px;
   grid-template-columns: 400px 1fr;
+  margin-top: 20px;
 }
 .book-show .books-img {
   width: 100%;
   height: auto;
+}
+.book-show .book-images, .book-show .book-content {
+  position: sticky;
+  top: 150px;
 }
 .book-show .book-gallery {
   margin-top: 20px;
@@ -1111,7 +1150,7 @@ h6 span {
   border: 1px solid #dcdcde;
 }
 .book-show .book-desc {
-  margin: 40px 0px;
+  margin: 20px 0px 40px 0px;
 }
 .book-show .book-info {
   display: flex;
@@ -1145,6 +1184,28 @@ h6 span {
 
 .book-details {
   margin: 40px 0px;
+}
+
+.author-find {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.author-find img {
+  width: 300px;
+  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 300px;
+  min-height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 50px;
+  border: 1px solid #dcdcde;
+}
+.author-find p {
+  margin-top: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

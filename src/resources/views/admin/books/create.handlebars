@@ -18,7 +18,7 @@
             <div class="grid-2">
                 <div class="form-group">
                     <label class="form-label" for="title">Title:</label>
-                    <input type="text" name="title" id="title" placeholder="Title" class="form-input">
+                    <input type="text" name="title" id="title" placeholder="Title" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="slug">Slug:</label>
@@ -28,7 +28,7 @@
 
             <div class="form-group">
                 <label class="form-label" for="visible">Visible:</label>
-                <select name="visible" id="visible" class="form-input">
+                <select name="visible" id="visible" class="form-input" required>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
@@ -37,17 +37,28 @@
             <div class="grid-2">
                 <div class="form-group">
                     <label class="form-label" for="volume">Volume:</label>
-                    <input type="number" name="volume" id="volume" min="1" placeholder="Volume" class="form-input">
+                    <input type="number" name="volume" id="volume" min="1" placeholder="Volume" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="edition">Edition:</label>
-                    <input type="number" name="edition" id="edition" min="1" placeholder="Edition" class="form-input">
+                    <input type="number" name="edition" id="edition" min="1" placeholder="Edition" class="form-input" required>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label class="form-label" for="pages">Pages:</label>
+                    <input type="number" name="pages" id="pages" min="1" placeholder="Pages" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="language">Language:</label>
+                    <input type="text" name="language" id="language" placeholder="Language" class="form-input">
                 </div>
             </div>
             
             <div class="form-group">
                 <label class="form-label" for="release_date">Release Date:</label>
-                <input type="date" name="release_date" id="release_date" class="form-input">
+                <input type="date" name="release_date" id="release_date" class="form-input" required>
             </div>
             <div class="form-group">
                 <label class="form-label" for="description">Description:</label>

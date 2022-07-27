@@ -7,6 +7,8 @@ module.exports = async (payload) => {
         visible: yup.boolean().default(false),
         volume: yup.number().required(),
         edition: yup.number().required(),
+        pages: yup.number().required(),
+        language: yup.string(),
         release_date: yup.date().required(),
         description: yup.string(),
         details: yup.string(),

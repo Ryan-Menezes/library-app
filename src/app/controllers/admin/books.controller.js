@@ -49,13 +49,18 @@ module.exports = {
         try {
             const { fields, files } = await fileUtil.parse(req);
             const data = req.body = fields;
-            const { slug } = req.params;
             const { token } = req.admin;
 
-            const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/new`);
-            const result = await bookRepository.create(token, payload, files);
+            if (!Array.isArray(files.gallery)) {
+                files.gallery = [ files.gallery ];
+            }
 
-            if (result) {
+            const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/new`);
+            const { status, response } = await bookRepository.create(token, payload, files);
+
+            if (status === 201) {
+                const slug = response.data.attributes.slug;
+
                 // Add images
                 if (Array.isArray(files.gallery)) {
                     files.gallery.forEach(async image => {
@@ -84,7 +89,7 @@ module.exports = {
 
             res.redirect(`${route}/new`);
         } catch (e) {
-            next(httpErrors.InternalServerError());
+            next(httpErrors.InternalServerError(e));
         }
     },
 
@@ -148,10 +153,14 @@ module.exports = {
                 return next(httpErrors.NotFound());
             }
 
+            if (!Array.isArray(files.gallery)) {
+                files.gallery = [ files.gallery ];
+            }
+
             const payload = await errorsUtil.treatRequest(req, res, bookSchema, `${route}/${slug}/edit`);
-            const result = await bookRepository.update(token, slug, payload, files);
+            const { status } = await bookRepository.update(token, slug, payload, files);
             
-            if (result) {
+            if (status === 200) {
                 // Remove all categories and authors
                 await bookRepository.deleteAllCategories(token, slug);
                 await bookRepository.deleteAllAuthors(token, slug);

@@ -12,9 +12,11 @@ const path = 'site/books/';
 module.exports = {
     index: async (req, res, next) => {
         try {
-            req.query.title = req.query.search || '';
+            const query = req.query;
+            query.title = query.search || query.title || '';
+            delete query.search;
 
-            const books = await bookRepository.all(req.query);
+            const books = await bookRepository.all(query);
             const categories = await categoryRepository.all();
             const authors = await authorRepository.all();
             

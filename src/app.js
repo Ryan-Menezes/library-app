@@ -70,6 +70,8 @@ require('./routes/admin/authors.route')(app);
 
 require('./routes/site/index.route')(app);
 require('./routes/site/books.route')(app);
+require('./routes/site/categories.route')(app);
+require('./routes/site/authors.route')(app);
 
 // - Errors
 app.use((req, res, next) => {

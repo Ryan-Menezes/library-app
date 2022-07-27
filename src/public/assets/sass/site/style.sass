@@ -120,6 +120,33 @@
         margin-bottom: 20px
         color: #d4d5d6
 
+.header-find
+    height: auto
+    background-color: white
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2)
+    position: sticky
+    top: 0px
+    z-index: 999999999
+
+    .logo
+        width: 80px
+
+    .header-nav
+        @include d-flex(row, center, space-between)
+
+        ul
+           @include d-flex() 
+
+           li
+                display: inline-block
+                padding: 0px 40px
+
+                a
+                    color: $dark-color
+
+                    i
+                        margin-right: 5px
+
 .footer
     padding: 30px
     text-align: center
@@ -317,10 +344,15 @@
 
 .book-show
     @include d-grid(400px 1fr, 40px, flex-start, flex-start)
+    margin-top: 20px
 
     .books-img
         width: 100%
         height: auto
+
+    .book-images, .book-content
+        position: sticky
+        top: 150px
 
     .book-gallery
         margin-top: 20px
@@ -332,7 +364,7 @@
             border: 1px solid #dcdcde
 
     .book-desc
-        margin: 40px 0px
+        margin: 20px 0px 40px 0px
 
     .book-info
         @include d-flex(row, center, flex-start)
@@ -359,3 +391,21 @@
         
 .book-details
     margin: 40px 0px     
+
+.author-find
+    @include d-flex(row)
+
+    img
+        width: 300px
+        height: 300px
+        max-width: 300px
+        max-height: 300px
+        min-width: 300px
+        min-height: 300px
+        object-fit: cover
+        border-radius: 50%
+        margin-right: 50px
+        border: 1px solid #dcdcde
+    
+    p
+        margin-top: 20px

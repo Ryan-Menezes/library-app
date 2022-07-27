@@ -43,9 +43,9 @@ module.exports = {
             const { token } = req.admin;
 
             const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/new`);
-            const result = await authorRepository.create(token, payload, files);
+            const { status } = await authorRepository.create(token, payload, files);
 
-            if (result) {
+            if (status === 201) {
                 req.flash('successes', [ 'Author created successfully!' ]);
             } else {
                 req.flash('errors', [ 'Could not create a new author, there was an error creating' ]);
@@ -91,9 +91,9 @@ module.exports = {
             }
 
             const payload = await errorsUtil.treatRequest(req, res, authorSchema, `${route}/${slug}/edit`);
-            const result = await authorRepository.update(token, slug, payload, files);
+            const { status } = await authorRepository.update(token, slug, payload, files);
 
-            if (result) {
+            if (status === 200) {
                 req.flash('successes', [ 'Author updated successfully!' ]);
             } else {
                 req.flash('errors', [ 'Could not updated a author, there was an error updating' ]);

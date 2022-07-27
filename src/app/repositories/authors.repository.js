@@ -46,7 +46,10 @@ module.exports = {
             },
         });
 
-        return response.status === 201;
+        const status = response.status;
+        const response_json = await response.json();
+
+        return { status, response: response_json };
     },
 
     update: async (token, slug, payload, files) => {
@@ -62,7 +65,10 @@ module.exports = {
             },
         });
 
-        return response.status === 200;
+        const status = response.status;
+        const response_json = await response.json();
+
+        return { status, response: response_json };
     },
 
     delete: async (token, slug) => {
@@ -76,5 +82,22 @@ module.exports = {
         });
 
         return response.status === 200;
+    },
+
+    // -----------------------------
+    // BOOKS
+    // -----------------------------
+    getBooks: async (slug, filter = {}) => {
+        filter = urlUtil.parseQuery(filter);
+
+        const response = await fetch(`${apiConfig.url}/${endpoint}/${slug}/books?${filter}`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+        });
+
+        return response.json();
     },
 };
