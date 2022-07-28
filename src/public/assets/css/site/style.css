@@ -745,6 +745,66 @@ h6 span {
   margin: 40px 0px;
 }
 
+.header-nav ul, .header-default-nav ul, .header-find-nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.header-nav ul li, .header-default-nav ul li, .header-find-nav ul li {
+  display: inline-block;
+  padding: 10px 40px;
+}
+.header-nav ul li a i, .header-default-nav ul li a i, .header-find-nav ul li a i {
+  margin-right: 5px;
+}
+.header-nav ul li:hover > ul, .header-default-nav ul li:hover > ul, .header-find-nav ul li:hover > ul {
+  display: flex;
+}
+.header-nav .submenu, .header-default-nav .submenu, .header-find-nav .submenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 200px;
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  display: none;
+  overflow: hidden;
+}
+.header-nav .submenu a, .header-default-nav .submenu a, .header-find-nav .submenu a {
+  color: black;
+  width: 100%;
+  transition-duration: 0.3s;
+}
+.header-nav .submenu a:hover, .header-default-nav .submenu a:hover, .header-find-nav .submenu a:hover {
+  background-color: #6042f5;
+  color: white;
+}
+.header-nav .submenu li, .header-default-nav .submenu li, .header-find-nav .submenu li {
+  display: block;
+  text-align: left;
+  padding: 15px;
+  font-size: 14px;
+}
+.header .header-info, .header-default .header-info, .header-find .header-info {
+  width: auto;
+  margin: 50px 0px;
+}
+.header .header-title, .header-default .header-title, .header-find .header-title {
+  font-size: 50px;
+  color: white !important;
+}
+.header .header-desc, .header-default .header-desc, .header-find .header-desc {
+  font-size: 14px;
+  margin: 20px 0px;
+  color: #d4d5d6;
+}
+
 .header {
   background-image: url("/img/banner.jpg");
   background-size: cover;
@@ -763,35 +823,15 @@ h6 span {
   align-items: center;
   justify-content: space-between;
 }
-.header-nav ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.header-nav ul li {
-  display: inline-block;
-  padding: 0px 40px;
-}
 .header-nav ul li a {
   color: white;
 }
-.header-nav ul li a i {
-  margin-right: 5px;
+.header-nav ul li:hover > ul {
+  display: flex;
 }
-.header-info {
-  width: 700px;
+.header .header-info {
+  width: 600px;
   margin: 150px 0px;
-}
-.header-title {
-  font-size: 50px;
-  margin-bottom: 20px;
-  color: white;
-}
-.header-desc {
-  font-size: 14px;
-  margin-bottom: 20px;
-  color: #d4d5d6;
 }
 
 .header-default {
@@ -806,40 +846,17 @@ h6 span {
   width: 80px;
   filter: brightness(0) invert(1);
 }
-.header-default .header-nav {
+.header-default-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-.header-default .header-nav ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.header-default .header-nav ul li {
-  display: inline-block;
-  padding: 0px 40px;
-}
-.header-default .header-nav ul li a {
+.header-default-nav ul li a {
   color: white;
 }
-.header-default .header-nav ul li a i {
-  margin-right: 5px;
-}
-.header-default .header-info {
-  width: auto;
-  margin: 50px 0px;
-}
-.header-default .header-title {
-  font-size: 50px;
-  color: white !important;
-}
-.header-default .header-desc {
-  font-size: 14px;
-  margin-bottom: 20px;
-  color: #d4d5d6;
+.header-default-nav ul li:hover > ul {
+  display: flex;
 }
 
 .header-find {
@@ -853,27 +870,26 @@ h6 span {
 .header-find .logo {
   width: 80px;
 }
-.header-find .header-nav {
+.header-find .header-nav ul li a {
+  color: #121212;
+}
+
+.footer-info {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: #1f1f1f;
+  margin-top: 80px;
+  color: white;
 }
-.header-find .header-nav ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+.footer-info .logo {
+  width: 150px;
+  filter: brightness(0) invert(1);
 }
-.header-find .header-nav ul li {
-  display: inline-block;
-  padding: 0px 40px;
-}
-.header-find .header-nav ul li a {
-  color: #121212;
-}
-.header-find .header-nav ul li a i {
-  margin-right: 5px;
+.footer-info p {
+  max-width: 400px;
+  text-align: center;
 }
 
 .footer {
@@ -881,7 +897,7 @@ h6 span {
   text-align: center;
   color: white;
   background-color: #121212;
-  margin-top: 80px;
+  color: white;
 }
 .footer a {
   color: white;

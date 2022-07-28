@@ -37,6 +37,64 @@
 .top-info
     margin: 40px 0px
 
+.header, .header-default, .header-find
+    &-nav
+        ul
+           @include d-flex() 
+           position: relative
+
+           li
+                display: inline-block
+                padding: 10px 40px
+
+                a
+
+                    i
+                        margin-right: 5px
+
+                &:hover > ul
+                    display: flex
+
+        .submenu
+            @include d-flex(column, flex-start, flex-start)
+            position: absolute
+            width: 200px
+            background: white
+            border-radius: 5px
+            margin-top: 10px
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3)
+            display: none
+            overflow: hidden
+
+            a
+                color: black
+                width: 100%
+                transition-duration: 0.3s
+
+                &:hover
+                    background-color: $primary-color
+                    color: white
+
+            li
+                display: block
+                text-align: left
+                padding: 15px
+                font-size: 14px
+
+    .header-info
+        width: auto
+        margin: 50px 0px
+
+    .header-title
+        font-size: 50px
+        color: white!important
+
+    .header-desc
+        font-size: 14px
+        margin: 20px 0px
+        color: #d4d5d6
+
+
 .header
     background-image: url('/img/banner.jpg')
     background-size: cover
@@ -53,31 +111,18 @@
         @include d-flex(row, center, space-between)
 
         ul
-           @include d-flex() 
 
            li
-                display: inline-block
-                padding: 0px 40px
 
                 a
                     color: white
 
-                    i
-                        margin-right: 5px
+                &:hover > ul
+                    display: flex
 
-    &-info
-        width: 700px
+    .header-info
+        width: 600px
         margin: 150px 0px
-
-    &-title
-        font-size: 50px
-        margin-bottom: 20px
-        color: white
-
-    &-desc
-        font-size: 14px
-        margin-bottom: 20px
-        color: #d4d5d6
 
 .header-default
     height: auto
@@ -91,34 +136,18 @@
         width: 80px
         filter: brightness(0) invert(1)
 
-    .header-nav
+    &-nav
         @include d-flex(row, center, space-between)
 
         ul
-           @include d-flex() 
 
            li
-                display: inline-block
-                padding: 0px 40px
 
                 a
                     color: white
 
-                    i
-                        margin-right: 5px
-
-    .header-info
-        width: auto
-        margin: 50px 0px
-
-    .header-title
-        font-size: 50px
-        color: white!important
-
-    .header-desc
-        font-size: 14px
-        margin-bottom: 20px
-        color: #d4d5d6
+                &:hover > ul
+                    display: flex
 
 .header-find
     height: auto
@@ -132,27 +161,34 @@
         width: 80px
 
     .header-nav
-        @include d-flex(row, center, space-between)
 
         ul
-           @include d-flex() 
 
            li
-                display: inline-block
-                padding: 0px 40px
 
                 a
                     color: $dark-color
 
-                    i
-                        margin-right: 5px
+.footer-info
+    @include d-flex(row, center, space-between)
+    background-color: lighten($dark-color, 5)
+    margin-top: 80px
+    color: white
+
+    .logo
+        width: 150px
+        filter: brightness(0) invert(1)
+
+    p
+        max-width: 400px
+        text-align: center
 
 .footer
     padding: 30px
     text-align: center
     color: white
     background-color: $dark-color
-    margin-top: 80px
+    color: white
 
     a
         color: white

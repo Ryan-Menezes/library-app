@@ -5,8 +5,22 @@
             <ul>
                 <li><a href="/" title="Home"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="/books" title="Books"><i class="fa-solid fa-book"></i> Books</a></li>
-                <li><a href="/categories" title="Categories"><i class="fa-solid fa-tags"></i> Categories</a></li>
-                <li><a href="/authors" title="Authors"><i class="fa-solid fa-book-open-reader"></i> Authors</a></li>
+                <li>
+                    <a href="javascript:void(0)" title="Categories"><i class="fa-solid fa-tags"></i> Categories</a>
+                    <ul class="submenu">
+                        {{#each categories}}
+                        <a href="/categories/{{this.attributes.slug}}" title="{{this.attributes.name}}"><li>{{this.attributes.name}}</li></a>
+                        {{/each}}
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" title="Authors"><i class="fa-solid fa-book-open-reader"></i> Authors</a>
+                    <ul class="submenu">
+                        {{#each authors}}
+                        <a href="/authors/{{this.attributes.slug}}" title="{{this.attributes.name}}"><li>{{this.attributes.name}}</li></a>
+                        {{/each}}
+                    </ul>
+                </li>
             </ul>
         </nav>
 

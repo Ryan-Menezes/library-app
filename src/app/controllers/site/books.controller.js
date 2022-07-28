@@ -43,6 +43,9 @@ module.exports = {
                 return next(httpErrors.NotFound());
             }
 
+            const categories = await categoryRepository.all();
+            const authors = await authorRepository.all();
+
             // Book data
             const bookData = book.data || {};
 
@@ -71,6 +74,8 @@ module.exports = {
             res.render(`${path}show`, {
                 title: bookData.attributes.title,
                 book: bookData,
+                authors: authors.data || [],
+                categories: categories.data || [],
             });
         } catch (e) {
             next(httpErrors.InternalServerError());
