@@ -28,7 +28,7 @@ module.exports = {
             authorData.attributes.description = authorData.attributes.description.replace(/(\r\n|\n)/ig, '<br>');
 
             // Get all
-            const books = await authorRepository.getBooks(slug, req.query);
+            const books = await authorRepository.getBooksWithOneAuthor(slug, req.query);
             const categories = await categoryRepository.all();
             const authors = await authorRepository.all();
             

@@ -1,5 +1,6 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
+const bookRepository = require('./books.repository');
 const urlUtil = require('../../utils/url.util');
 const formUtil = require('../../utils/form.util');
 const { api: apiConfig } = require('../../config');
@@ -99,5 +100,21 @@ module.exports = {
         });
 
         return response.json();
+    },
+
+    getBooksWithOneAuthor: async function(slug, filter = {}) {
+        const books = await this.getBooks(slug, filter);
+
+        // Parse book data
+        books.data = await Promise.all((books.data || []).map(async book => {
+            const authors = await bookRepository.getAuthors(book.attributes.slug);
+            const  authorsData = authors.data || [];
+            
+            book.attributes.author = authorsData[0] || {};
+
+            return book;
+        }));
+
+        return books;
     },
 };

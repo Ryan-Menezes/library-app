@@ -40,6 +40,39 @@
 
             <p class="book-desc">{{{book.attributes.description}}}</p>
 
+            <div class="book-info">
+                <div class="info">
+                    <p>ISBN</p>
+                    <i class="fa-solid fa-barcode"></i>
+                    <p>{{book.attributes.isbn}}</p>
+                </div>
+                <div class="info">
+                    <p>Pages</p>
+                    <i class="fa-solid fa-file"></i>
+                    <p>{{book.attributes.pages}}</p>
+                </div>
+                <div class="info">
+                    <p>Language</p>
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <p>{{book.attributes.language}}</p>
+                </div>
+                <div class="info">
+                    <p>Volume</p>
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    <p>{{book.attributes.volume}}</p>
+                </div>
+                <div class="info">
+                    <p>Edition</p>
+                    <i class="fa-solid fa-bookmark"></i>
+                    <p>{{book.attributes.edition}}</p>
+                </div>
+                <div class="info">
+                    <p>Release Date</p>
+                    <i class="fa-solid fa-calendar"></i>
+                    <p>{{book.attributes.release_date}}</p>
+                </div>
+            </div>
+
             <ul class="book-info">
                 {{#each book.attributes.categories}}
                 <li><a href="/categories/{{this.attributes.slug}}" title="{{this.attributes.name}}"><i class="fa-solid fa-tag"></i> {{this.attributes.name}}</a></li>

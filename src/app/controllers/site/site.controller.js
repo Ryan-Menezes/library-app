@@ -12,7 +12,7 @@ const path = 'site/';
 module.exports = {
     index: async (req, res, next) => {
         try {
-            const books = await bookRepository.all(req.query);
+            const books = await bookRepository.allWithOneAuthor();
             const categories = await categoryRepository.all();
             const authors = await authorRepository.all();
             

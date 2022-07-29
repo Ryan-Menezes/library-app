@@ -16,7 +16,7 @@ module.exports = {
             query.title = query.search || query.title || '';
             delete query.search;
 
-            const books = await bookRepository.all(query);
+            const books = await bookRepository.allWithOneAuthor(req.query);
             const categories = await categoryRepository.all();
             const authors = await authorRepository.all();
             

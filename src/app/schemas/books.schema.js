@@ -5,6 +5,7 @@ module.exports = async (payload) => {
         title: yup.string().required(),
         slug: yup.string(),
         visible: yup.boolean().default(false),
+        isbn: yup.string().required(),
         volume: yup.number().required(),
         edition: yup.number().required(),
         pages: yup.number().required(),

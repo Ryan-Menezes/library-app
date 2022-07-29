@@ -473,43 +473,43 @@
 }
 
 .bg-primary {
-  background-color: #6042f5;
+  background-color: #6042f5 !important;
 }
 
 .bg-danger {
-  background-color: #eb4034;
+  background-color: #eb4034 !important;
 }
 
 .bg-success {
-  background-color: #2aa85f;
+  background-color: #2aa85f !important;
 }
 
 .bg-warning {
-  background-color: #c9b622;
+  background-color: #c9b622 !important;
 }
 
 .bg-dark {
-  background-color: #121212;
+  background-color: #121212 !important;
 }
 
 .text-primary {
-  color: #6042f5;
+  color: #6042f5 !important;
 }
 
 .text-danger {
-  color: #eb4034;
+  color: #eb4034 !important;
 }
 
 .text-success {
-  color: #2aa85f;
+  color: #2aa85f !important;
 }
 
 .text-warning {
-  color: #c9b622;
+  color: #c9b622 !important;
 }
 
 .text-dark {
-  color: #121212;
+  color: #121212 !important;
 }
 
 .text-white {
@@ -536,8 +536,8 @@
 
 .grid-1 {
   display: grid;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   grid-gap: 10px;
   grid-template-columns: repeat(1, 1fr);
   width: 100%;
@@ -545,8 +545,8 @@
 
 .grid-2 {
   display: grid;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   grid-gap: 10px;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
@@ -554,8 +554,8 @@
 
 .grid-3 {
   display: grid;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   grid-gap: 10px;
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
@@ -563,8 +563,8 @@
 
 .grid-4 {
   display: grid;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   grid-gap: 10px;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
@@ -572,8 +572,8 @@
 
 .grid-5 {
   display: grid;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   grid-gap: 10px;
   grid-template-columns: repeat(5, 1fr);
   width: 100%;
@@ -581,8 +581,8 @@
 
 .grid-6 {
   display: grid;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   grid-gap: 10px;
   grid-template-columns: repeat(6, 1fr);
   width: 100%;
@@ -789,6 +789,27 @@ h6 span {
   overflow: auto;
   padding: 40px;
   height: 100vh;
+}
+.container-admin-body .cards {
+  padding-top: 20px;
+  border-top: 1px solid #dcdcde;
+}
+.container-admin-body .cards .card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  border: 1px solid #dcdcde;
+  background-color: white;
+  color: #121212;
+}
+.container-admin-body .cards .card i {
+  font-size: 30px;
+}
+.container-admin-body .cards .card p {
+  font-size: 20px;
+  font-weight: bold;
 }
 .container-admin-body .section-info {
   padding: 20px;

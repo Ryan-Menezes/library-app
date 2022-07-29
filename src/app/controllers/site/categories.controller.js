@@ -22,7 +22,7 @@ module.exports = {
                 return next(httpErrors.NotFound());
             }
 
-            const books = await categoryRepository.getBooks(slug, req.query);
+            const books = await categoryRepository.getBooksWithOneAuthor(slug, req.query);
             const categories = await categoryRepository.all();
             const authors = await authorRepository.all();
             
@@ -36,7 +36,7 @@ module.exports = {
                 nextPage: books.links.next ? books.links.next.replace(/.*\?/ig, '?') : null,
             });
         } catch (e) {
-            next(httpErrors.InternalServerError());
+            next(httpErrors.InternalServerError(e));
         }
     },
 };

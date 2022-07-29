@@ -21,6 +21,22 @@ module.exports = {
         return response.json();
     },
 
+    allWithOneAuthor: async function(filter = {}) {
+        const books = await this.all(filter);
+
+        // Parse book data
+        books.data = await Promise.all((books.data || []).map(async book => {
+            const authors = await this.getAuthors(book.attributes.slug);
+            const  authorsData = authors.data || [];
+            
+            book.attributes.author = authorsData[0] || {};
+
+            return book;
+        }));
+
+        return books;
+    },
+
     find: async (slug) => {
         const response = await fetch(`${apiConfig.url}/${endpoint}/${slug}`, {
             method: 'GET',

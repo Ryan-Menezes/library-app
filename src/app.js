@@ -19,7 +19,7 @@ const app = express();
 const hbs = handlebars.create({
     defaultLayout: 'site',
     helpers: {
-        parseDate: (date, lang = 'pt-BR') => new Date(date).toLocaleString(lang),
+        parseDate: (date, lang = 'en-US') => new Date(date).toLocaleString(lang),
         includes: (slug, data) => data.find(object => object.attributes.slug === slug),
     },
 });
