@@ -17,6 +17,7 @@ Finally, start the node.js server with the command "npm start" in a separate ter
 cd "project directory"
 npm start
 ```
-Important: this project is an example of using an api developed by me. it must be running separately for the project to work correctly.
-<br>
-API Link: [API](https://github.com/Ryan-Menezes/library-api)
+## Important
+This project is an example of using an api developed by me. it must be running separately for the project to work correctly.
+<br><br>
+API Link: [library-api](https://github.com/Ryan-Menezes/library-api)
