@@ -31,15 +31,23 @@
                     <td>{{parseDate this.attributes.created_at}}</td>
                     <td>{{parseDate this.attributes.updated_at}}</td>
                     <td>
+                        {{#if (equals this.attributes._id ../admin.user._id)}}
+                        <a href="/admin/users/{{this.attributes._id}}/edit" title="Edit User" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
+                        {{else}}
                         <a href="javascript:void(0)" data-delete="/admin/users/{{this.attributes._id}}/delete" title="Delete User" class="btn btn-danger p-1"><i class="fa-solid fa-trash-alt m-0"></i></a>
                         <a href="/admin/users/{{this.attributes._id}}/edit" title="Edit User" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
+                        {{/if}}
                     </td>
                 </tr>
+                {{else}}
+                <tr><td colspan="9">There are no users to show here</td></tr>
                 {{/each}}
             </tbody>
         </table>
 
+        {{#if users}}
         {{>_pagination}}
+        {{/if}}
     </div>
 </section>
 

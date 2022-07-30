@@ -7,9 +7,16 @@
         <div class="books">
             {{#each books}}
             {{> site/books/_card book=this.attributes}}
+            {{else}}
+            <div class="empty" style="grid-column: 1/4;">
+                <p>There are no books to show here</p>
+                <a href="/books" title="Books" class="btn">More info <i class="fa-solid fa-plus"></i></a>
+            </div>
             {{/each}}
         </div>
         
+        {{#if books}}
         {{>_pagination}}
+        {{/if}}
     </div>
 </section>

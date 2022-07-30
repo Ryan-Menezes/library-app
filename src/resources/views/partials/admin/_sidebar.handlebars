@@ -1,6 +1,11 @@
 <nav class="sidebar">
     <div class="sidebar-header">
+        {{#if admin.user.avatar}}
         <img src="{{admin.user.avatar}}" alt="{{admin.user.first_name}} {{admin.user.last_name}}" title="{{admin.user.first_name}} {{admin.user.last_name}}" />
+        {{else}}
+        <img src="/img/default.png" alt="{{admin.user.first_name}} {{admin.user.last_name}}" title="{{admin.user.first_name}} {{admin.user.last_name}}" />
+        {{/if}}
+        
         <p>{{admin.user.first_name}} {{admin.user.last_name}}</p>
     </div>
     <ul class="sidebar-body">

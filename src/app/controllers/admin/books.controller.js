@@ -89,7 +89,7 @@ module.exports = {
 
             res.redirect(`${route}/new`);
         } catch (e) {
-            next(httpErrors.InternalServerError(e));
+            next(httpErrors.InternalServerError());
         }
     },
 

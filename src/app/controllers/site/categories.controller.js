@@ -36,7 +36,7 @@ module.exports = {
                 nextPage: books.links.next ? books.links.next.replace(/.*\?/ig, '?') : null,
             });
         } catch (e) {
-            next(httpErrors.InternalServerError(e));
+            next(httpErrors.InternalServerError());
         }
     },
 };

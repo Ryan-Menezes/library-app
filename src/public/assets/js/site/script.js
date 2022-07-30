@@ -89,4 +89,8 @@ $(document).ready(function() {
             },
         },
     });
+
+    $('.book-gallery img').click(function() {
+        $('.books-img').attr('src', $(this).attr('src'));
+    })
 });

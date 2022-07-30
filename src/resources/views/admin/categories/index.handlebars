@@ -25,11 +25,15 @@
                         <a href="/admin/categories/{{this.attributes.slug}}/edit" title="Edit Category" class="btn btn-primary p-1"><i class="fa-solid fa-pencil m-0"></i></a>
                     </td>
                 </tr>
+                {{else}}
+                <tr><td colspan="9">There are no categories to show here</td></tr>
                 {{/each}}
             </tbody>
         </table>
 
+        {{#if categories}}
         {{>_pagination}}
+        {{/if}}
     </div>
 </section>
 

@@ -58,6 +58,7 @@
 }
 .btn:hover {
   transform: scale(1.1);
+  text-decoration: none !important;
 }
 .btn i, .btn svg {
   margin-left: 5px;
@@ -1236,6 +1237,15 @@ h6 span {
 }
 .author-find p {
   margin-top: 20px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 5px solid #121212;
+  padding: 20px 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

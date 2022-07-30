@@ -8,7 +8,7 @@
     <div class="books-info">
         <a href="/books/{{book.slug}}" title="{{book.title}}"><h3 class="books-title">{{book.title}}</h3></a>
 
-        {{#if book.author}}
+        {{#if book.author.attributes}}
         <div>
             <div class="books-authors">
                 <img src="{{book.author.attributes.avatar}}" title="{{book.author.attributes.name}}" alt="{{book.author.attributes.name}}" />

@@ -58,6 +58,7 @@
 }
 .btn:hover {
   transform: scale(1.1);
+  text-decoration: none !important;
 }
 .btn i, .btn svg {
   margin-left: 5px;
