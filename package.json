@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An application for managing a library's book catalog",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "nodemon ./src/index.js",
     "dev": "node ./src/index.js"
